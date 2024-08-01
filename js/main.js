@@ -64,3 +64,18 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+
+
+  document.getElementById('kirimButton').addEventListener('click', function () {
+    // Tampilkan elemen loading
+    document.querySelector('.loading').style.display = 'block';
+
+    // Nonaktifkan tombol kirim
+    this.disabled = true;
+
+    // Aktifkan kembali tombol dan sembunyikan loading setelah 5 detik
+    setTimeout(() => {
+        document.querySelector('.loading').style.display = 'none';
+        this.disabled = false;
+    }, 3000);
+});

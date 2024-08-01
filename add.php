@@ -1,17 +1,3 @@
-<?php
-include 'function.php';
-include 'function.php';
-
-?>
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +8,7 @@ include 'function.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" />
 
     <style>
         * {
@@ -32,22 +18,12 @@ include 'function.php';
         }
 
         .loading {
-            /* align-content: center;
-            margin-left: 100px; */
-            top: auto;
+            display: none;
         }
     </style>
 </head>
 
 <body>
-
-
-
-
-
-
-
-
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -71,15 +47,6 @@ include 'function.php';
         </div>
     </nav>
 
-
-
-
-
-
-
-
-
-
     <div class="container mt-5">
         <h2>Inventory Management Dashboard</h2>
         <blockquote class="blockquote">
@@ -87,7 +54,6 @@ include 'function.php';
         </blockquote>
 
         <a href="index.php" class="btn btn-dark mb-1">Kembali</a>
-
 
         <!-- loading -->
         <div class="loading">
@@ -101,48 +67,33 @@ include 'function.php';
 
         <!-- label form data  -->
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">nama</label>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Nama Barang">
+            <label for="floatingInput">Nama Barang</label>
         </div>
 
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Data Pekerja</label>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Nama Barang">
+            <label for="floatingInput">jumlah</label>
         </div>
 
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">nama</label>
+            <input type="text" class="form-control" id="floatingInput" placeholder="Nama Barang">
+            <label for="floatingInput">Harga</label>
         </div>
-
-
 
         <div class="form-floating">
             <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
             <label for="floatingTextarea2">Comments</label>
         </div>
 
-
         <!-- button -->
-        <button class="btn btn-primary mt-3 mb-4 w-25" type="submit">Kirim
-        </button>
-
-
-
-
-
-
-
-
-
-
-
+        <button id="kirimButton" class="btn btn-primary mt-3 mb-4 w-25" type="submit">Kirim</button>
     </div>
 
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+       
+    </script>
 </body>
 
 </html>
