@@ -1,3 +1,29 @@
+<?php
+require 'function.php';
+
+if (isset($_POST['kirim'])) {
+    header("Location: index.php");
+    exit(); // Jangan lupa untuk meng
+    if (create_barang($_POST) > 0) {
+        echo "<script>
+                alert('Data berhasil ditambahkan!');
+                document.location.href='index.php';
+            </script>";
+    } else {
+        echo "<script>
+                alert('Data gagal ditambahkan!');
+                document.location.href='index.php';
+            </script>";
+    }
+}
+
+
+
+$pekerja = query("SELECT * FROM pekerja");
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,16 +51,17 @@
 
 <body>
 
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Dashboard</a>
+            <a class="navbar-brand" href="#">Toko Online Mamuju</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Barang</a>
+                        <a class="nav-link" href="#">Barang</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Pekerja</a>
@@ -47,6 +74,8 @@
         </div>
     </nav>
 
+
+
     <div class="container mt-3 pt-5">
         <h2>Inventory Management Dashboard</h2>
         <blockquote class="blockquote">
@@ -56,38 +85,38 @@
         <a href="index.php" class="btn btn-dark mb-1">Kembali</a>
 
         <!-- loading -->
-        <div class="loading">
-            <div class="clearfix">
-                <div class="spinner-border float-end" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        </div>
+        
         <hr>
 
+
+
         <!-- label form data  -->
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Nama Barang">
-            <label for="floatingInput">Nama Barang</label>
-        </div>
+        <form action="" method="post">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Barang">
+                <label for="nama">Nama Barang</label>
+            </div>
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Nama Barang">
-            <label for="floatingInput">jumlah</label>
-        </div>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="jumlah Barang">
+                <label for="jumlah">jumlah Barang</label>
+            </div>
 
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Nama Barang">
-            <label for="floatingInput">Harga</label>
-        </div>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="harga" name="harga" placeholder="Harga Barang">
+                <label for="harga">Harga Barang</label>
+            </div>
 
-        <div class="form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">Comments</label>
-        </div>
 
-        <!-- button -->
-        <button id="kirimButton" class="btn btn-primary mt-3 mb-4 w-25" type="submit">Kirim</button>
+
+            <!-- button -->
+            <button type="submit" name="kirim" id="kirimButton" class="btn btn-primary mt-3 mb-4 w-25">Kirim</button>
+        </form>
+
+
+
+
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
