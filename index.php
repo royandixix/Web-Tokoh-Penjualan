@@ -32,7 +32,7 @@ $dataBarang = select("SELECT * FROM pekerja");
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bootstrap demo</title>
+  <title>web</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -57,7 +57,7 @@ $dataBarang = select("SELECT * FROM pekerja");
 
 
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">Dashboard</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,6 +75,9 @@ $dataBarang = select("SELECT * FROM pekerja");
             <a class="nav-link" href="#">Modal</a>
           </li>
         </ul>
+        <div class="ms-auto">
+          <img src="img/8666609_user_icon.png" alt="Logo" width="40" height="40" class="d-inline-block align-top">
+        </div>
       </div>
     </div>
   </nav>
@@ -84,11 +87,7 @@ $dataBarang = select("SELECT * FROM pekerja");
 
 
 
-
-
-
-
-  <div class="container mt-5">
+  <div class="container mt-3 pt-5">
     <h2>Inventory Management Dashboard</h2>
     <blockquote class="blockquote">
       <p>Berisi Daftar Semua Barang</p>
@@ -97,73 +96,51 @@ $dataBarang = select("SELECT * FROM pekerja");
     <a href="add.php" class=" btn btn-dark mb-1">Tambahkan</a>
     <hr>
 
-
-
-
-
-
-
-
-
-
-
-
     <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Jumlah</th>
-            <th>Harga</th>
-            <th>Tanggal</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-
-
-
-
-
-
-          <?php $no = 1; ?>
-          <?php foreach ($dataBarang as $bar) : ?>
-            <tr>
-              <td><?php echo $no++; ?></td>
-              <td><?php echo $bar["nama"]; ?></td>
-              <td><?php echo $bar["jumlah"]; ?></td>
-              <td>Rp. <?php echo number_format($bar["harga"], 0, ',', '.'); ?></td>
-              <td><?php echo date('d/m/y | H::i:s', strtotime($bar["tanggal"])); ?></td>
-
-              <td class="text-center">
-                <a href="#" class="btn btn-dark">
-                  <img src="img/315164_add_note_icon.png" alt="" width="20px">
-                  Edit</a>
-
-                  <a href="#" class="btn btn-warning text-white ">
-                  <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="20px">
-                  Edit</a>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-
-
-
-
-
-
-
-        </tbody>
-      </table>
-    </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Jumlah</th>
+        <th>Harga</th>
+        <th>Tanggal</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php $no = 1; ?>
+      <?php foreach ($dataBarang as $bar) : ?>
+        <tr>
+          <td class="text-nowrap"><?php echo $no++; ?></td>
+          <td class="text-nowrap"><?php echo $bar["nama"]; ?></td>
+          <td class="text-nowrap"><?php echo $bar["jumlah"]; ?></td>
+          <td class="text-nowrap">Rp. <?php echo number_format($bar["harga"], 0, ',', '.'); ?></td>
+          <td class="text-nowrap"><?php echo date('d/m/y | H:i:s', strtotime($bar["tanggal"])); ?></td>
+          <td class="text-nowrap">
+            <a href="#" class="btn btn-dark btn-sm mx-1">
+              <img src="img/315164_add_note_icon.png" alt="" width="20px" class="mr-1">
+              Edit
+            </a>
+            <a href="#" class="btn btn-warning btn-sm mx-1 text-white">
+              <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="20px" class="mr-1">
+              Hapus
+            </a>
+          </td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
 
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
-    <script src=""></script>
+    <script>
+
+    </script>
+
 </body>
 
 </html>

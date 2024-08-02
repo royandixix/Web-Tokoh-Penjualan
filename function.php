@@ -2,7 +2,8 @@
 
 
 // koneksikan ke database
-$db =  mysqli_connect(
+$db =  mysqli_connect
+(
     "localhost",
     "root",
     "",
@@ -10,7 +11,8 @@ $db =  mysqli_connect(
 );
 
 
-$result = mysqli_query(
+$result = mysqli_query
+(
     $db,
     // OERDER BY id
     // ASC
