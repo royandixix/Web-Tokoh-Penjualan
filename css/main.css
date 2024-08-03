@@ -1,53 +1,10 @@
-/* Variabel untuk teks */
-:root {
-  --primary-color: #333; /* Sesuaikan dengan warna yang diinginkan */
-  --secondary-color: #666;
-  --tertiary-color: #999;
-  --emphasis-color: #f00;
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
-
-/* Variabel untuk transparansi teks */
-.text-opacity-25 { color: rgba(var(--primary-color), 0.25); }
-.text-opacity-50 { color: rgba(var(--primary-color), 0.50); }
-.text-opacity-75 { color: rgba(var(--primary-color), 0.75); }
-.text-opacity-100 { color: rgba(var(--primary-color), 1); }
-
-/* Variabel untuk warna teks */
-.text-muted { color: var(--secondary-color); }
-.text-body-secondary { color: var(--secondary-color); }
-.text-body-tertiary { color: var(--tertiary-color); }
-.text-body-emphasis { color: var(--emphasis-color); }
-.text-reset { color: inherit; }
-
-@if $font-size-root != null {
-  --#{$prefix}root-font-size: #{$font-size-root};
+.navbar-nav .nav-item {
+    padding: 0 2px; /* Padding di kanan dan kiri setiap item navbar */
 }
---#{$prefix}body-font-family: #{inspect($font-family-base)};
-@include rfs($font-size-base, --#{$prefix}body-font-size);
---#{$prefix}body-font-weight: #{$font-weight-base};
---#{$prefix}body-line-height: #{$line-height-base};
-@if $body-text-align != null {
-  --#{$prefix}body-text-align: #{$body-text-align};
-}
-
---#{$prefix}body-color: #{$body-color};
---#{$prefix}body-color-rgb: #{to-rgb($body-color)};
---#{$prefix}body-bg: #{$body-bg};
---#{$prefix}body-bg-rgb: #{to-rgb($body-bg)};
-
---#{$prefix}emphasis-color: #{$body-emphasis-color};
---#{$prefix}emphasis-color-rgb: #{to-rgb($body-emphasis-color)};
-
---#{$prefix}secondary-color: #{$body-secondary-color};
---#{$prefix}secondary-color-rgb: #{to-rgb($body-secondary-color)};
---#{$prefix}secondary-bg: #{$body-secondary-bg};
---#{$prefix}secondary-bg-rgb: #{to-rgb($body-secondary-bg)};
-  ${$prefix}secondary-text-rgb-ceners ($body-secondary-bg-dark)
-  $body-secondary-bg-light: adjust-color($body-secondary-bg, $lightness: 20%);
---#{$prefix}tertiary-color: #{$body-tertiary-color};
---#{$prefix}tertiary-color-rgb: #{to-rgb($body-tertiary-color)};
---#{$prefix}tertiary-bg: #{$body-tertiary-bg};
---#{$prefix}tertiary-bg-rgb: #{to-rgb($body-tertiary-bg)};
-
-/* K
 
