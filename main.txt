@@ -1,0 +1,11 @@
+
+
+
+Tentu, berikut adalah kalimat yang menjelaskan penggunaan fungsi dan tag HTML tersebut:
+
+htmlspecialchars(): Fungsi ini digunakan untuk melindungi aplikasi web dari serangan Cross-Site Scripting (XSS) dengan mengonversi karakter-karakter khusus seperti <, >, dan & menjadi entitas HTML yang aman, sehingga mencegah eksekusi kode berbahaya.
+
+urlencode(): Fungsi ini digunakan untuk mengenkripsi parameter dalam URL, memastikan bahwa URL yang dibangun dengan parameter tersebut aman dan tidak menimbulkan masalah, terutama saat mengirimkan data melalui URL.
+
+<meta charset="utf-8" />: Tag ini memastikan bahwa encoding UTF-8 diterapkan pada halaman web, menjamin bahwa karakter-karakter dari berbagai bahasa ditampilkan dengan benar dan konsisten di seluruh browser.
+

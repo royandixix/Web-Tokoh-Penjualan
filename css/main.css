@@ -8,3 +8,14 @@ body {
     padding: 0 2px; /* Padding di kanan dan kiri setiap item navbar */
 }
 
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+.user-photo {
+    width: 40px; /* Sesuaikan ukuran lebarnya */
+    height: 40px; /* Sesuaikan ukuran tingginya */
+    border-radius: 50%; /* Membuat foto berbentuk bulat */
+    object-fit: cover; /* Menyesuaikan foto dalam elemen */
+}

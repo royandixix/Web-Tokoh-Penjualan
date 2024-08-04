@@ -37,28 +37,34 @@ if (isset($_POST['kirim'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap5.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Toko Online Mamuju</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Barang</a>
+                        <a class="nav-link" href="index.php">Barang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pekerja</a>
+                        <a class="nav-link" href="pelanggan.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Modal</a>
                     </li>
                 </ul>
+                <div class="user-info">
+                    <!-- Foto pengguna -->
+                    <img src="img/WhatsApp Image 2024-02-06 at 16.48.39_6827bc60.jpg" alt="User Photo" class="user-photo">
+                </div>
             </div>
         </div>
     </nav>
@@ -94,6 +100,7 @@ if (isset($_POST['kirim'])) {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
+    
+    <script src="js/query.js" ></script>
 </body>
 </html>

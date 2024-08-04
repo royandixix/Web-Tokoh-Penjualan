@@ -1,11 +1,4 @@
-<?php
-require 'config/fungsi.php';
 
-// Ambil semua data dari tabel 'barang'
-$result = query("SELECT * FROM barang ORDER BY id_barang DESC");
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,10 +15,6 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap5.css">
 </head>
-<style>
-
-
-</style>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -57,10 +46,10 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
     <div class="container mt-5 pt-5">
         <h2>Inventory Management Dashboard</h2>
         <blockquote class="blockquote">
-            <p>Berisi Daftar Semua Barang</p>
+            <p>Berisi Daftar Semua Pelanggan</p>
         </blockquote>
 
-        <a href="add.php" class="btn btn-dark mb-1">Tambahkan</a>
+        <a href="pelanggan.php" class="btn btn-dark mb-1">Tambahkan</a>
         <hr>
 
         <div class="table-responsive">
@@ -69,32 +58,31 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Jumlah</th>
-                        <th>Harga</th>
-                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th>Jenis Kelamin</th>
+                        <th>No Telepon</th>
+                        <th>Email</th>
+                        <th>Foto</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1; ?>
-                    <?php foreach ($result as $br) : ?>
-                        <tr>
-                            <td class="text-nowrap"><?php echo htmlspecialchars($no++, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td class="text-nowrap"><?php echo htmlspecialchars($br["nama"], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td class="text-nowrap"><?php echo htmlspecialchars($br["jumlah"], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td class="text-nowrap">Rp. <?php echo number_format($br["harga"], 0, ',', '.'); ?></td>
-                            <td class="text-nowrap"><?php echo date('d/m/y | H:i:s', strtotime($br["tanggal"])); ?></td>
-                            <td class="text-nowrap">
-                                <a href="ubah.php?id_barang=<?php echo urlencode($br['id_barang']); ?>" class="btn btn-dark btn-sm mx-1">
-                                    <img src="img/315164_add_note_icon.png" alt="" width="20px" class="mr-1">
-                                    Edit
-                                </a>
-                                <a href="delete.php?id_barang=<?php echo urlencode($br['id_barang']); ?>" class="btn btn-warning btn-sm mx-1 text-white" onclick="return confirm('Yakin Data Di Hapus')">
-                                    <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="20px" class="mr-1">
-                                    Hapus
-                                </a>
-                            </td>
-                        </tr>
+                    <?php foreach ($data_pelanggan as $pelanggan) : ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($no++, ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['nama'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['status'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['jenis_kelamin'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['telepon'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['email'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['foto'], ENT_QUOTES, 'UTF-8'); ?></td>
+                        <td>
+                            <a href="detail.php?id=<?php echo urlencode($pelanggan['id_pelanggan']); ?>" class="btn btn-dark btn-sm mx-1">Detail</a>
+                            <a href="edit.php?id=<?php echo urlencode($pelanggan['id_pelanggan']); ?>" class="btn btn-warning btn-sm mx-1 text-white">Edit</a>
+                            <a href="hapus.php?id=<?php echo urlencode($pelanggan['id_pelanggan']); ?>" class="btn btn-danger btn-sm mx-1">Hapus</a>
+                        </td>
+                    </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -104,9 +92,9 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- <script src="js/confir.js"></script> -->
     <!-- asset plugin  -->
-    
-    <script src="js/query.js" ></script>
-    
+
+    <script src="js/query.js"></script>
+
 </body>
 
 </html>

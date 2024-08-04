@@ -35,7 +35,6 @@ function query($query)
 
 
 // Fungsi untuk menambahkan barang barang ke database
-
 function tanggal($post)
 {
     global $db;
@@ -57,6 +56,7 @@ function tanggal($post)
 // Pastikan untuk menutup koneksi setelah selesai
 // mysqli_close($db); // Un-comment this line if needed
 
+// Fungsi untuk mengubah data barang berdasarkan id_barang
 function edit($post)
 {
 
@@ -74,6 +74,15 @@ function edit($post)
     harga = '$harga' 
     WHERE id_barang = '$id_barang'";
 
+    mysqli_query($db, $query);
+    return mysqli_affected_rows($db);
+}
+
+
+// Fungsi untuk menghapus barang berdasarkan id_barang
+function delet($id_barang){
+    global $db;
+    $query = "DELETE FROM barang WHERE id_barang = '$id_barang'";
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
