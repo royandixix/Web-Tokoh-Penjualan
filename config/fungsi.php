@@ -10,9 +10,9 @@ $db = mysqli_connect(
 
 if (!$db) {
     die
-    ("Koneksi ke database gagal: "
-        . mysqli_connect_error()
-    );
+        ("Koneksi ke database gagal: "
+            . mysqli_connect_error()
+        );
 }
 
 
@@ -35,7 +35,7 @@ function query($query)
 
 
 // Fungsi untuk menambahkan barang barang ke database
-function tanggal($post)
+function addbarang($post)
 {
     global $db;
     $nama = mysqli_real_escape_string($db, $post['nama']);
@@ -52,9 +52,81 @@ function tanggal($post)
 
     return mysqli_affected_rows($db);
 }
-
 // Pastikan untuk menutup koneksi setelah selesai
-// mysqli_close($db); // Un-comment this line if needed
+
+
+
+// fungsi menambahka data pelanggan
+function addPelanggan($post) {
+    global $db; // Pastikan variabel koneksi database global
+    $nama = htmlspecialchars($post["nama"]);
+    $status = htmlspecialchars($post["status"]);
+    $jenis_kelamin = htmlspecialchars($post["jenis_kelamin"]);
+    $telepon = htmlspecialchars($post["telepon"]);
+    $email = htmlspecialchars($post["email"]);
+    $foto = htmlspecialchars($post["foto"]);
+
+    $query = "INSERT INTO pelanggan (nama, status, jenis_kelamin, telepon, email, foto) VALUES ('$nama', '$status', '$jenis_kelamin', '$telepon', '$email', '$foto')";
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+}
+
+
+
+
+
+
+
+
+
+
+
+function pelanggan($query)
+{
+    global $db;
+    $result = $db->query($query);
+
+    if ($result->num_rows > 0) {
+        // Mengambil semua hasil dalam bentuk array asosiatif
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+    } else {
+        $data = [];
+    }
+
+    $db->close();
+    return $data;
+}
+
+
+
+
+
+// function pelanggan($id_pelanggan) {
+//     $id_pelanggan = (int)$id_pelanggan;
+//     $result = query("SELECT * FROM pelanggan WHERE id_pelanggan = $id_pelanggan");
+
+//     if (isset($result[0])) {
+//         return $result[0];
+//     } else {
+//         return [
+//             'nama' => '',
+//             'status' => '',
+//             'jenis_kelamin' => '',
+//             'telepon' => '',
+//             'email' => '',
+//             'foto' => 'default.jpg'
+//         ];
+//     }
+// }
+
+
+
+
+
+
+
+
 
 // Fungsi untuk mengubah data barang berdasarkan id_barang
 function edit($post)
@@ -80,9 +152,12 @@ function edit($post)
 
 
 // Fungsi untuk menghapus barang berdasarkan id_barang
-function delet($id_barang){
+function delet($id_barang)
+{
     global $db;
     $query = "DELETE FROM barang WHERE id_barang = '$id_barang'";
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
+
+

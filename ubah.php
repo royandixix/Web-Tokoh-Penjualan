@@ -77,7 +77,7 @@ if (isset($_POST['ubah'])) {
         </div>
     </nav>
 
-    <div class="container mt-5 pt-5">
+    <div class="container mt-4 pt-5">
         <h2>Inventory Management Dashboard</h2>
         <blockquote class="blockquote">
             <p>Pembaruan Data</p>

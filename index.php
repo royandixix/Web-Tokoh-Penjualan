@@ -1,6 +1,7 @@
 <?php
 require 'config/fungsi.php';
 
+
 // Ambil semua data dari tabel 'barang'
 $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
 
@@ -28,7 +29,7 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
 </style>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Toko Online Mamuju</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,13 +55,14 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
         </div>
     </nav>
 
-    <div class="container mt-5 pt-5">
+
+    <div class="container mt-4 pt-5">
         <h2>Inventory Management Dashboard</h2>
         <blockquote class="blockquote">
             <p>Berisi Daftar Semua Barang</p>
         </blockquote>
 
-        <a href="add.php" class="btn btn-dark mb-1">Tambahkan</a>
+        <a href="addbarang.php" class="btn btn-dark mb-1">Tambahkan</a>
         <hr>
 
         <div class="table-responsive">
@@ -104,9 +106,9 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- <script src="js/confir.js"></script> -->
     <!-- asset plugin  -->
-    
-    <script src="js/query.js" ></script>
-    
+
+    <script src="js/query.js"></script>
+
 </body>
 
 </html>

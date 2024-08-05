@@ -11,7 +11,7 @@ if (!$db) {
 
 if (isset($_POST['kirim'])) {
 
-    if (tanggal($_POST) > 0) {
+    if (addbarang($_POST) > 0) {
         echo "<script>
                 alert('Data berhasil ditambahkan!');
                 document.location.href = 'index.php';
@@ -23,6 +23,7 @@ if (isset($_POST['kirim'])) {
               </script>";
     }
 }
+
 
 ?>
 
@@ -69,7 +70,7 @@ if (isset($_POST['kirim'])) {
         </div>
     </nav>
 
-    <div class="container mt-5 pt-5">
+    <div class="container mt-4 pt-5">
         <h2>Inventory Management Dashboard</h2>
         <blockquote class="blockquote">
             <p>Tambah Barang</p>
