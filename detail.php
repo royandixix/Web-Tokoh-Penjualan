@@ -92,12 +92,12 @@ if ($id_pelanggan > 0) {
                     </tr>
                     <tr>
                         <td>Foto</td>
-                        <td><img src="asset/<?php echo htmlspecialchars($pelanggan['foto'], ENT_QUOTES, 'UTF-8'); ?>" alt="Foto Pelanggan" class="img-fuid" width="200"></td>
+                        <td><img src="img/<?php echo htmlspecialchars($pelanggan['foto'], ENT_QUOTES, 'UTF-8'); ?>" alt="Foto Pelanggan" class="img-fuid" width="150"  ></td>
                     </tr>
                 </tbody>
             </table>
 
-            <a href="pelanggan.php" class="btn btn-primary btn-sm mx-1 text-white">Kembali </a>
+            <a href="pelanggan.php" class="btn btn-primary btn-sm mx-1 text-white p-2 ">Kembali </a>
         </div>
     </div>
 
