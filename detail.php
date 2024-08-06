@@ -68,40 +68,39 @@ if ($id_pelanggan > 0) {
         </blockquote>
 
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table id="pelangganTable" class="table table-striped">
                 <tbody>
-
                     <tr>
                         <td>Nama</td>
-                        <td><?php echo $pelanggan['nama']; ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['nama'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
                     <tr>
                         <td>Status</td>
-                        <td><?php echo $pelanggan['status'] ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['status'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
                     <tr>
                         <td>Jenis_kelamin</td>
-                        <td><?php echo $pelanggan['jenis_kelamin'] ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['jenis_kelamin'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
                     <tr>
                         <td>Telepon</td>
-                        <td><?php echo $pelanggan['telepon'] ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['telepon'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td><?php echo $pelanggan['email'] ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['email'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
                     <tr>
                         <td>Foto</td>
-                        <td><?php echo $pelanggan['foto'] ?></td>
+                        <td><?php echo htmlspecialchars($pelanggan['foto'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
-
                 </tbody>
             </table>
 
             <a href="pelanggan.php" class="btn btn-primary btn-sm mx-1 text-white">Kembali </a>
         </div>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
