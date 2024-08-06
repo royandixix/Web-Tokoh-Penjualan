@@ -72,7 +72,7 @@ function addPelanggan($post)
     $jenis_kelamin = htmlspecialchars($post['jenis_kelamin'], ENT_QUOTES, 'UTF-8');
     $telepon = htmlspecialchars($post['telepon'], ENT_QUOTES, 'UTF-8');
     $email = htmlspecialchars($post['email'], ENT_QUOTES, 'UTF-8');
-    
+
     // Pastikan file upload berhasil
     $fileName = uploaded_file();
     if ($fileName === null) {
@@ -89,10 +89,10 @@ function addPelanggan($post)
 
 function uploaded_file()
 {
-    $namaFile    = $_FILES['foto']['name'];
-    $ukuranFile  = $_FILES['foto']['size'];
-    $error       = $_FILES['foto']['error'];
-    $tmpName     = $_FILES['foto']['tmp_name'];
+    $namaFile = $_FILES['foto']['name'];
+    $ukuranFile = $_FILES['foto']['size'];
+    $error = $_FILES['foto']['error'];
+    $tmpName = $_FILES['foto']['tmp_name'];
 
     // cek apakah ada file yang diupload
     if ($error === 4) {
@@ -105,8 +105,8 @@ function uploaded_file()
 
     // cek ekstensi file
     $extensifileValid = ['jpg', 'jpeg', 'png'];
-    $extensifile      = explode('.', $namaFile);
-    $extensifile      = strtolower(end($extensifile));
+    $extensifile = explode('.', $namaFile);
+    $extensifile = strtolower(end($extensifile));
 
     // check format/ekstensi file
     if (!in_array($extensifile, $extensifileValid)) {
