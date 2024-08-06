@@ -47,10 +47,7 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                         <a class="nav-link" href="#">Modal</a>
                     </li>
                 </ul>
-                <div class="user-info">
-                    <!-- Foto pengguna -->
-                    <img src="img/WhatsApp Image 2024-02-06 at 16.48.39_6827bc60.jpg" alt="User Photo" class="user-photo">
-                </div>
+                
             </div>
         </div>
     </nav>
@@ -87,7 +84,7 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                             <td class="text-nowrap">Rp. <?php echo number_format($br["harga"], 0, ',', '.'); ?></td>
                             <td class="text-nowrap"><?php echo date('d/m/y | H:i:s', strtotime($br["tanggal"])); ?></td>
                             <td class="text-nowrap">
-                                <a href="ubah.php?id_barang=<?php echo urlencode($br['id_barang']); ?>" class="btn btn-dark btn-sm mx-1">
+                                <a href="edit.php?id_barang=<?php echo urlencode($br['id_barang']); ?>" class="btn btn-dark btn-sm mx-1">
                                     <img src="img/315164_add_note_icon.png" alt="" width="20px" class="mr-1">
                                     Edit
                                 </a>

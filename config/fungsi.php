@@ -174,11 +174,21 @@ function edit($post)
 }
 
 
+
+
 // Fungsi untuk menghapus barang berdasarkan id_barang
 function delet($id_barang)
 {
     global $db;
     $query = "DELETE FROM barang WHERE id_barang = '$id_barang'";
+    mysqli_query($db, $query);
+    return mysqli_affected_rows($db);
+}
+
+function delet_pelanggan($id_pelanggan)
+{
+    global $db;
+    $query = "DELETE FROM pelanggan  WHERE id_pelanggan = '$id_pelanggan'";
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }

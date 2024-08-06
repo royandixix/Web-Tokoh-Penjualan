@@ -8,7 +8,8 @@ if (!$db) {
     " . mysqli_connect_error());
 }
 
-function execute($query) {
+function execute($query)
+{
     global $db;
 
     if (mysqli_query($db, $query)) {
@@ -49,7 +50,7 @@ if (isset($_POST['kirim'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -76,10 +77,7 @@ if (isset($_POST['kirim'])) {
                         <a class="nav-link" href="#">Modal</a>
                     </li>
                 </ul>
-                <div class="user-info">
-                    <img src="img/WhatsApp Image 2024-02-06 at 16.48.39_6827bc60.jpg" alt="User Photo"
-                        class="user-photo">
-                </div>
+
             </div>
         </div>
     </nav>
@@ -96,7 +94,8 @@ if (isset($_POST['kirim'])) {
 
         <form action="addpelanggan.php" method="post" enctype="multipart/form-data">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama pelanggan" required>
+                <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama pelanggan" required
+                    pattern="[A-Za-z\s]+" title="Masukan Hanyah huruf Dan Spasi ">
                 <label for="nama">Nama Pelanggan</label>
             </div>
 
@@ -124,7 +123,7 @@ if (isset($_POST['kirim'])) {
                 <div class="col-md">
                     <div class="form-floating">
                         <input type="tel" class="form-control" id="telepon" name="telepon" placeholder="telepon"
-                            required>
+                            required pattern="\d{10,12}" title="Masukan Nomor Telepon Yang Valid (10-12 digit)">
                         <label for="telepon">Nomor Telepon</label>
                     </div>
                 </div>
@@ -155,6 +154,9 @@ if (isset($_POST['kirim'])) {
         crossorigin="anonymous"></script>
 
     <script src="js/query.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/telepon.js"></script>
+    <script src="js/pelanggan.js"></script>
 </body>
 
 </html>

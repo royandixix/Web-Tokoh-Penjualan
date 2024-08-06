@@ -25,7 +25,7 @@ if ($id_pelanggan > 0) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -52,11 +52,7 @@ if ($id_pelanggan > 0) {
                         <a class="nav-link" href="#">Modal</a>
                     </li>
                 </ul>
-                <div class="user-info">
-                    <!-- Foto pengguna -->
-                    <img src="img/WhatsApp Image 2024-02-06 at 16.48.39_6827bc60.jpg" alt="User Photo"
-                        class="user-photo">
-                </div>
+
             </div>
         </div>
     </nav>
@@ -68,7 +64,7 @@ if ($id_pelanggan > 0) {
         </blockquote>
 
         <div class="table-responsive">
-            <table id="pelangganTable" class="table table-striped">
+            <table id="pelangganTable" class="table">
                 <tbody>
                     <tr>
                         <td>Nama</td>
@@ -92,7 +88,8 @@ if ($id_pelanggan > 0) {
                     </tr>
                     <tr>
                         <td>Foto</td>
-                        <td><img src="img/<?php echo htmlspecialchars($pelanggan['foto'], ENT_QUOTES, 'UTF-8'); ?>" alt="Foto Pelanggan" class="img-fuid" width="150"  ></td>
+                        <td><img src="img/<?php echo htmlspecialchars($pelanggan['foto'], ENT_QUOTES, 'UTF-8'); ?>"
+                                alt="Foto Pelanggan" class="img-fuid" width="150"></td>
                     </tr>
                 </tbody>
             </table>

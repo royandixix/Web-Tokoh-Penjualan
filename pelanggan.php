@@ -21,11 +21,12 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="CSS/main.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap5.css">
+
 </head>
 
 <body>
@@ -48,11 +49,7 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                         <a class="nav-link" href="#">Modal</a>
                     </li>
                 </ul>
-                <div class="user-info">
-                    <!-- Foto pengguna -->
-                    <img src="img/WhatsApp Image 2024-02-06 at 16.48.39_6827bc60.jpg" alt="User Photo"
-                        class="user-photo">
-                </div>
+               
             </div>
         </div>
     </nav>
@@ -76,7 +73,7 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                         <th>Jenis Kelamin</th>
                         <th>No Telepon</th>
                         <th>Email</th>
-                        <th>Foto</th>
+                        <!-- Hapus kolom Foto dari header tabel -->
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -90,21 +87,23 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                             <td><?php echo htmlspecialchars($pelanggan['jenis_kelamin'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($pelanggan['telepon'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($pelanggan['email'], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php echo htmlspecialchars($pelanggan['foto'], ENT_QUOTES, 'UTF-8'); ?></td>
+                            <!-- Hapus kolom Foto dari baris tabel -->
                             <td class="text-nowrap">
                                 <a href="detail.php?id_pelanggan=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
                                     class="btn btn-primary btn-sm mx-1">
                                     <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="20px" class="mr-1">
                                     Detail
                                 </a>
-                                <a href="edit.php?id=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
+
+                                <a href="editpelanggan.php?id_pelanggan=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
                                     class="btn btn-dark btn-sm mx-1 text-white">
                                     <img src="img/315164_add_note_icon.png" alt="" width="20px" class="mr-1">
                                     Edit
                                 </a>
-                                <a href="hapus.php?id=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
+
+                                <a href="deletepelanggan.php?id_pelanggan=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
                                     class="btn btn-warning btn-sm mx-1 text-white"
-                                    onclick="return confirm('Yakin Data Di Hapus')">
+                                    onclick="return confirm('Yakin Data Mahasiswa Akan Di hapus')">
                                     <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="20px" class="mr-1">
                                     Hapus
                                 </a>
@@ -119,9 +118,6 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <!-- <script src="js/confir.js"></script> -->
-    <!-- asset plugin  -->
-
     <script src="js/query.js"></script>
 </body>
 
