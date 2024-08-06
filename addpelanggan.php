@@ -8,14 +8,16 @@ if (!$db) {
     " . mysqli_connect_error());
 }
 
-$jenis_kelamin = $_POST['jenis_kelamin'];
+function execute($query) {
+    global $db;
 
-if ($jenis_kelamin == '1') {
-    $jenis_kelamin = 'Laki-Laki';
-} elseif ($jenis_kelamin == '2') {
-    $jenis_kelamin = 'Perempuan';
+    if (mysqli_query($db, $query)) {
+        return true;
+    } else {
+        echo "Error: " . mysqli_error($db);
+        return false;
+    }
 }
-
 
 if (isset($_POST['kirim'])) {
 
@@ -75,7 +77,6 @@ if (isset($_POST['kirim'])) {
                     </li>
                 </ul>
                 <div class="user-info">
-                    <!-- Foto pengguna -->
                     <img src="img/WhatsApp Image 2024-02-06 at 16.48.39_6827bc60.jpg" alt="User Photo"
                         class="user-photo">
                 </div>
@@ -93,7 +94,7 @@ if (isset($_POST['kirim'])) {
 
         <hr>
 
-        <form action="addpelanggan.php" method="post" enctype=" multipart/form-data ">
+        <form action="addpelanggan.php" method="post" enctype="multipart/form-data">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama pelanggan" required>
                 <label for="nama">Nama Pelanggan</label>
