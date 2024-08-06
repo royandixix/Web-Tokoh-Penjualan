@@ -57,14 +57,15 @@ function addbarang($post)
 
 
 // fungsi menambahka data pelanggan
-function addPelanggan($post) {
+function addPelanggan($post)
+{
     global $db; // Pastikan variabel koneksi database global
     $nama = htmlspecialchars($post["nama"]);
     $status = htmlspecialchars($post["status"]);
     $jenis_kelamin = htmlspecialchars($post["jenis_kelamin"]);
     $telepon = htmlspecialchars($post["telepon"]);
     $email = htmlspecialchars($post["email"]);
-    $foto = htmlspecialchars($post["foto"]);
+    $foto = uploaded_file();
 
     $query = "INSERT INTO pelanggan (nama, status, jenis_kelamin, telepon, email, foto) VALUES ('$nama', '$status', '$jenis_kelamin', '$telepon', '$email', '$foto')";
     mysqli_query($db, $query);
@@ -73,7 +74,54 @@ function addPelanggan($post) {
 }
 
 
+// ini fungsi buat mengupload file
 
+function uploaded_file()
+{
+    $namaFile = $_FILES['foto']['foto'];
+    $ukuranFile = $_FILES['foto']['size'];
+    $error = $_FILES['foto']['error'];
+    $tmpName = $_FILES['foto']['tmp_name'];
+
+    // cek file yang di upload
+    $extensifileValid = ['jpg', 'jpeg', 'png'];
+    $extensifile = explode('.', $namaFile);
+    $exstensifile = strtolower(end($exstensifile));
+
+    // check format/exstensi file
+    if (!in_array($exstensifile, $extensifileValid)) {
+        // pesan gagal 
+        echo "<script>
+                    alert('Format File Tidak Vilded');
+                    document.location.href = 'addpelanggan.php';        
+              </script>";
+        die();
+    }
+
+    // check ukura file  2MB
+    if ($ukuranFile > 5000000) {
+        echo "<script>
+        alert('Ukuran File Terlalu Besar');
+              </script>";
+        return false;
+    }
+    // LOLOS pengecekan dan, gambar siap di upload 
+    // generate nama gambar baru 
+    $namaFileBaru = uniqid();
+    $namaFileBaru .= '.';
+    $namaFileBaru .= $extensifile;
+    // pindaj kan ke folde baru 
+    // move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+    // return $namaFileBaru;
+
+    move_uploaded_file($tmpName, 'assets/img/'. $namaFileBaru);
+
+    
+
+
+
+
+}
 
 
 

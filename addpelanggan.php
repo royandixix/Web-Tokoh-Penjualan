@@ -93,7 +93,7 @@ if (isset($_POST['kirim'])) {
 
         <hr>
 
-        <form action="addpelanggan.php" method="post">
+        <form action="addpelanggan.php" method="post" enctype=" multipart/form-data ">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama pelanggan" required>
                 <label for="nama">Nama Pelanggan</label>
@@ -139,7 +139,7 @@ if (isset($_POST['kirim'])) {
 
                 <div class="col-md">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="foto" name="foto" placeholder="foto" required>
+                        <input type="file" class="form-control" id="foto" name="foto" placeholder="foto" required>
                         <label for="foto">Foto</label>
                     </div>
                 </div>

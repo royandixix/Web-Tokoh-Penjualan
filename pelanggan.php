@@ -92,7 +92,7 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                             <td><?php echo htmlspecialchars($pelanggan['email'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($pelanggan['foto'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td class="text-nowrap">
-                                <a href="detail.php?id=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
+                                <a href="detail.php?id_pelanggan=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
                                     class="btn btn-primary btn-sm mx-1">
                                     <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="20px" class="mr-1">
                                     Detail

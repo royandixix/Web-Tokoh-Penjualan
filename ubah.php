@@ -4,7 +4,7 @@ require 'config/fungsi.php';
 // Ambil semua data dari tabel 'barang'
 // mengambil id_barang dair url
 
-$id_barang = (int)$_GET['id_barang'];
+$id_barang = (int)$_GET['id_barang'];   
 if($id_barang > 0) {
     $barang = query("SELECT * FROM barang WHERE id_barang = '$id_barang'")[0];
 }else {

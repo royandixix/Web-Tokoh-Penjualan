@@ -1,9 +1,14 @@
 <?php
- 
- require 'config/fungsi.php';
 
- $id_pelanggan = (int)$_GET['id_pelanggan'];
- $pelanggan = pelanggan("SELECT * FROM pelanggan WHERE id_pelanggan = $id_pelanggan")[1];
+require 'config/fungsi.php';
+
+$id_pelanggan = (int) $_GET['id_pelanggan'];
+if ($id_pelanggan > 0) {
+    $pelanggan = query("SELECT * FROM pelanggan WHERE id_pelanggan = '$id_pelanggan'")[0];
+} else {
+    echo "id_pelanggan tidak ada yang terdeteksi";
+    exit();
+}
 
 ?>
 
@@ -65,7 +70,7 @@
         <div class="table-responsive">
             <table class="table table-striped">
                 <tbody>
-                 
+
                     <tr>
                         <td>Nama</td>
                         <td><?php echo $pelanggan['nama']; ?></td>
