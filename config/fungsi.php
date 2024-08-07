@@ -173,6 +173,31 @@ function edit($post)
     return mysqli_affected_rows($db);
 }
 
+function edit_pelanggan($post) 
+{
+    global $db;
+    $id_pelanggan = $post['id_pelanggan'];
+    $nama = mysqli_real_escape_string($db,$post['nama']);
+    $status = mysqli_real_escape_string($db,$post['status']);
+    $jenis_kelamin = mysqli_real_escape_string($db,$post['jenis_kelamin']);
+    $telepon = mysqli_real_escape_string($db,$post['telepon']);
+    $email = mysqli_real_escape_string($db,$post['email']);
+    $fotoLama = mysqli_real_escape_string($db,$post['fotoLama']);
+
+    // chekc uplaod
+    if($_FILES['foto']['error'] == 4){
+        $foto = $fotoLama;
+    }else{
+        $foto = uploaded_file();
+    }
+    // query insert Edit Insert Delete
+    $query = "UPDATE pelanggan SET nama = '$nama', status = '$status', jenis_kelamin = '$jenis_kelamin', telepon = '$telepon', email = '$email', foto = '$foto' WHERE id_pelanggan = $id_pelanggan";
+    mysqli_query($db,$query);
+    return mysqli_affected_rows($db);
+
+}
+ 
+
 
 
 
