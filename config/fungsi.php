@@ -57,6 +57,24 @@ function addbarang($post)
 }
 // Pastikan untuk menutup koneksi setelah selesai
 
+function add_modal($post)
+{
+    global $db; // Memastikan koneksi database tersedia dalam fungsi ini
+    $nama = htmlspecialchars($post['nama'], ENT_QUOTES, 'UTF-8');
+    $username = htmlspecialchars($post['username'], ENT_QUOTES, 'UTF-8');
+    $email = htmlspecialchars($post['email'], ENT_QUOTES, 'UTF-8');
+    $password = password_hash($post['password'], PASSWORD_DEFAULT);
+
+    $level = htmlspecialchars($post['level'], ENT_QUOTES, 'UTF-8');
+    // enskkripsi password
+    $password = password_hash($password, PASSWORD_DEFAULT); 
+
+    // fungsi query
+    $query = "INSERT INTO akun VALUES(null, '$nama', '$username', '$email', '$password', '$level')";
+    mysqli_query($db, $query);
+    return mysqli_affected_rows($db);
+} 
+
 
 
 
@@ -196,6 +214,25 @@ function edit_pelanggan($post)
     return mysqli_affected_rows($db);
 
 }
+
+function edit_akun($post){
+  
+    global $db;
+    $id_akun = $post['id_akun'];
+    $nama = htmlspecialchars($post['nama']);
+    $username = htmlspecialchars($post['username']);
+    $email = htmlspecialchars($post['email']);
+    $password = htmlspecialchars($post['password']);
+    $level = htmlspecialchars($post['level']);
+
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $query = "UPDATE akun SET nama = '$nama', username = '$username', email = '$email', password = '$password', level = '$level' WHERE id_akun = $id_akun";
+    
+    mysqli_query($db, $query);
+    return mysqli_affected_rows($db);
+
+    
+}
  
 
 
@@ -213,9 +250,23 @@ function delet($id_barang)
 function delet_pelanggan($id_pelanggan)
 {
     global $db;
+    // ambil foto susuai data yg di pilih
+    $foto = query("SELECT * FROM pelanggan WHERE id_pelanggan = $id_pelanggan")[0];
+    unlink("img/" . $foto['foto']);
+
     $query = "DELETE FROM pelanggan  WHERE id_pelanggan = '$id_pelanggan'";
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
+     
+
+}
+
+function delet_akun($id_akun){ 
+    global $db; 
+    $id = mysqli_real_escape_string($db, $id_akun); // Amankan input agar tidak rentan terhadap SQL Injection
+    $query = "DELETE FROM akun WHERE id_akun = '$id_akun'";
+    return mysqli_query($db, $query);
+
 }
 
 

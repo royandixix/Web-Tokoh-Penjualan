@@ -35,10 +35,13 @@ script4.onload = function() {
                 "oPaginate": {
                     "sFirst": "Pertama",
                     "sPrevious": "Sebelumnya",
-                    "sNext": "Berikutnya",
-                    "sLast": "Terakhir"
+                    "sNext" : "Berikutnya",
+                    "sLast" : "Terakhir",
+                    " Slest": "Tambahan",
+                    "Slist" :  "penguragan",  
                 }
             }
+
         });
     });
 };

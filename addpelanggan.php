@@ -74,7 +74,7 @@ if (isset($_POST['kirim'])) {
                         <a class="nav-link" href="pelanggan.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Modal</a>
+                        <a class="nav-link" href="crudmodal.php">Modal</a>
                     </li>
                 </ul>
 
@@ -139,8 +139,10 @@ if (isset($_POST['kirim'])) {
 
                 <div class="col-md">
                     <div class="form-floating">
-                        <input type="file" class="form-control" id="foto" name="foto" placeholder="foto" required>
+                        <input type="file" class="form-control" id="foto" name="foto" placeholder="foto" required
+                            onchange="previewImg()">
                         <label for="foto">Foto</label>
+                        <img src="" alt="" class=" mt-1 img-thumbnail img-preview" width="100px">
                     </div>
                 </div>
             </div>
@@ -157,6 +159,7 @@ if (isset($_POST['kirim'])) {
     <script src="js/main.js"></script>
     <script src="js/telepon.js"></script>
     <script src="js/pelanggan.js"></script>
+    <script src="js/foto.js"></script>
 </body>
 
 </html>

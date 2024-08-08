@@ -46,7 +46,7 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                         <a class="nav-link" href="pelanggan.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Modal</a>
+                        <a class="nav-link" href="crudmodal.php">Modal</a>
                     </li>
                 </ul>
                

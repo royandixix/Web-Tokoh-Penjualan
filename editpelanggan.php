@@ -152,19 +152,16 @@ if (isset($_POST['kirim'])) {
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-floating">
-                                    <input type="file" class="form-control" id="foto" name="foto" placeholder="Foto">
+                                    <input type="file" class="form-control" id="foto" name="foto" placeholder="foto"
+                                        onchange="previewImg()">
                                     <label for="foto">Foto</label>
-                                    <?php if (!empty($pelanggan['foto'])): ?>
-                                        <p>
-                                            <img class="mt-1"
-                                                src="img/<?php echo htmlspecialchars($pelanggan['foto'], ENT_QUOTES, 'UTF-8'); ?>"
-                                                alt="Foto Pelanggan" class="img-fluid" width="100">
-                                        </p>
-                                    <?php endif; ?>
+                                    <img src="img/<?= $pelanggan['foto']; ?>" alt="" class="img-thumbnail img-preview"
+                                        width="100px">
                                 </div>
                             </div>
                             <div class="col-md-4 d-flex align-items-end">
-                                <button type="submit" name="kirim" class="btn btn-primary mb-5 w-50 ml-custom">Kirim</button>
+                                <button type="submit" name="kirim"
+                                    class="btn btn-primary mb-5 w-50 ml-custom">Kirim</button>
                             </div>
                         </div>
                     </div>
@@ -181,6 +178,7 @@ if (isset($_POST['kirim'])) {
     <script src="js/main.js"></script>
     <script src="js/telepon.js"></script>
     <script src="js/pelanggan.js"></script>
+    <script src="js/foto.js"></script>
 </body>
 
 </html>

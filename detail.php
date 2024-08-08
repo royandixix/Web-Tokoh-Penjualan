@@ -94,7 +94,7 @@ if ($id_pelanggan > 0) {
                 </tbody>
             </table>
 
-            <a href="pelanggan.php" class="btn btn-primary btn-sm mx-1 text-white p-2 ">Kembali </a>
+            <a href="pelanggan.php" class="btn btn-primary btn-sm mx-1 text-white p-2 mt-4 ">Kembali </a>
         </div>
     </div>
 
