@@ -122,7 +122,7 @@ function uploaded_file()
     }
 
     // cek ekstensi file
-    $extensifileValid = ['jpg', 'jpeg', 'png'];
+    $extensifileValid = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp'];
     $extensifile = explode('.', $namaFile);
     $extensifile = strtolower(end($extensifile));
 

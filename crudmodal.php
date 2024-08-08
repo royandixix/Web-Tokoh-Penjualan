@@ -209,8 +209,14 @@ if (isset($_POST['edit'])) {
 
                             <div class="mb-3">
                                 <label for="password">Password <small>(Masukan password Baru/Lama)</small></label>
-                                <input type="password" name="password" id="password" class="form-control" required
-                                    minlength="6" value="">
+                                <div class="input-group">
+                                    <input type="password" name="password" id="password-<?php echo $akun['id_akun']; ?>"
+                                        class="form-control" required minlength="6" value="">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        onclick="togglePasswordVisibility(<?php echo $akun['id_akun']; ?>)">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -259,6 +265,7 @@ if (isset($_POST['edit'])) {
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="js/jquery.js"></script>
+    <script src="hiddenPasword.js"></script>
 </body>
 
 </html>
