@@ -40,27 +40,28 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Barang</a>
+                        <a class="nav-link" href="index.php"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Barang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pelanggan.php">Pelanggan</a>
+                        <a class="nav-link" href="pelanggan.php"><i
+                                class="fa-solid fa-person-military-pointing"></i>&nbspPelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="crudmodal.php">Data Akun</a>
+                        <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbspData Akun</a>
                     </li>
                 </ul>
-               
             </div>
         </div>
     </nav>
 
     <div class="container mt-4 pt-5">
-        <h2>Inventory Management Dashboard</h2>
+        <h2><i class="fa-solid fa-folder-open"></i>&nbspInventory Management Dashboard</h2>
         <blockquote class="blockquote">
             <p>Berisi Daftar Semua Pelanggan</p>
         </blockquote>
 
-        <a href="addpelanggan.php" class="btn btn-dark mb-1">Tambahkan</a>
+        <a href="addpelanggan.php" class="btn btn-dark mb-1"><i
+                class="fa-solid fa-person-circle-plus"></i>&nbspTambahkan</a>
         <hr>
 
         <div class="table-responsive">
@@ -117,6 +118,9 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+        integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
         crossorigin="anonymous"></script>
     <script src="js/query.js"></script>
 </body>
