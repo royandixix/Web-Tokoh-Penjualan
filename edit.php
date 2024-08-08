@@ -66,7 +66,7 @@ if (isset($_POST['ubah'])) {
                         <a class="nav-link" href="pelanggan.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Modal</a>
+                        <a class="nav-link" href="crudmodal.php">Data Akun</a>
                     </li>
                 </ul>
             </div>

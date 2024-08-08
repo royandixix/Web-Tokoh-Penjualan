@@ -46,7 +46,7 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                         <a class="nav-link" href="pelanggan.php">Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="crudmodal.php">Modal</a>
+                        <a class="nav-link" href="crudmodal.php">Data Akun</a>
                     </li>
                 </ul>
                
@@ -104,7 +104,7 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                                 <a href="deletepelanggan.php?id_pelanggan=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
                                     class="btn btn-warning btn-sm mx-1 text-white"
                                     onclick="return confirm('Yakin Data Mahasiswa Akan Di hapus')">
-                                    <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="30px" class="mr-1">
+                                    <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="20px" class="mr-1">
                                     Hapus
                                 </a>
                             </td>

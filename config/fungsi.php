@@ -215,7 +215,7 @@ function edit_pelanggan($post)
 
 }
 
-function edit_akun($post){
+function edit_modal($post){
   
     global $db;
     $id_akun = $post['id_akun'];
