@@ -17,6 +17,7 @@ const script4 = document.createElement('script');
 script4.src = "https://cdn.datatables.net/2.1.3/js/dataTables.bootstrap5.js";
 document.head.appendChild(script4);
 
+
 // Pastikan semua pustaka telah dimuat sebelum inisialisasi DataTables
 script4.onload = function() {
     $(document).ready(function() {

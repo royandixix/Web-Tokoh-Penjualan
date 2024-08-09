@@ -1,4 +1,15 @@
 <?php
+
+
+// Cek apakah pengguna belum login
+if (!isset($_SESSION["login"])) {
+    echo "<script>
+            alert('Kamu Harus Login Dulu');
+            document.location.href = 'login.php';
+          </script>";
+    exit; // Menghentikan eksekusi script selanjutnya
+}
+
 require 'config/fungsi.php';
 
 
@@ -20,7 +31,7 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet"/>
+        rel="stylesheet" />
     <link rel="stylesheet" href="CSS/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="

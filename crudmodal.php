@@ -1,4 +1,15 @@
 <?php
+
+
+// Cek apakah pengguna belum login
+if (!isset($_SESSION["login"])) {
+    echo "<script>
+            alert('Kamu Harus Login Dulu');
+            document.location.href = 'login.php';
+          </script>";
+    exit; // Menghentikan eksekusi script selanjutnya
+}
+
 require 'config/fungsi.php';
 
 $data_akun = query("SELECT * FROM akun");
@@ -77,6 +88,7 @@ if (isset($_POST['edit'])) {
             </div>
         </div>
     </nav>
+    
 
     <div class="container mt-4 pt-5">
         <h2><i class="fa-solid fa-folder-open"></i>&nbspInventory Management Dashboard</h2>

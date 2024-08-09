@@ -1,9 +1,17 @@
 <?php
 
+
+
+// Cek apakah pengguna belum login
+if (!isset($_SESSION["login"])) {
+    echo "<script>
+            alert('Kamu Harus Login Dulu');
+            document.location.href = 'login.php';
+          </script>";
+    exit; // Menghentikan eksekusi script selanjutnya
+}
+
 require 'config/fungsi.php';
-
-
-
 // menampilkan daftar pelanggan
 $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
 ?>
@@ -28,7 +36,9 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap5.css">
 
 </head>
-
+<style>
+ 
+</style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">

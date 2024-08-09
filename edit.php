@@ -1,4 +1,15 @@
 <?php
+
+
+// Cek apakah pengguna belum login
+if (!isset($_SESSION["login"])) {
+    echo "<script>
+            alert('Kamu Harus Login Dulu');
+            document.location.href = 'login.php';
+          </script>";
+    exit; // Menghentikan eksekusi script selanjutnya
+}
+
 require 'config/fungsi.php';
 
 // Ambil semua data dari tabel 'barang'
