@@ -42,6 +42,8 @@ script4.onload = function() {
                     "Slist" :  "penguragan",  
                     "SsortAscending": ": Urutkan kolom ini secara ascending",
                     "SsortDescending": ": Urutkan kolom ini secara descending",
+                    
+                  
                 }
             }
 

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 // Cek apakah pengguna belum login
 if (!isset($_SESSION["login"])) {
@@ -12,11 +12,8 @@ if (!isset($_SESSION["login"])) {
 
 require 'config/fungsi.php';
 
-
 // Ambil semua data dari tabel 'barang'
 $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
-
-
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +35,6 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap5.css">
 </head>
-<style>
-
-
-</style>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -57,25 +50,27 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                         <a class="nav-link" href="index.php"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Barang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pelanggan.php"><i
-                                class="fa-solid fa-person-military-pointing"></i>&nbspPelanggan</a>
+                        <a class="nav-link" href="pelanggan.php"><i class="fa-solid fa-person-military-pointing"></i>&nbsp;Pelanggan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbspData Akun</a>
+                        <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbsp;Data Akun</a>
                     </li>
                 </ul>
+            </div>
+
+            <div>
+                <a class="navbar-brand" href="#"><?php echo htmlspecialchars($_SESSION['nama'], ENT_QUOTES, 'UTF-8'); ?></a>
             </div>
         </div>
     </nav>
 
     <div class="container mt-4 pt-5">
-        <h2><i class="fa-solid fa-folder-open"></i>&nbspInventory Management Dashboard</h2>
+        <h2><i class="fa-solid fa-folder-open"></i>&nbsp;Inventory Management Dashboard</h2>
         <blockquote class="blockquote">
             <p>Berisi Daftar Semua Barang</p>
         </blockquote>
 
-        <a href="addbarang.php" class="btn btn-dark mb-1"><i
-                class="fa-solid fa-person-circle-plus"></i>&nbspTambahkan</a>
+        <a href="addbarang.php" class="btn btn-dark mb-1"><i class="fa-solid fa-person-circle-plus"></i>&nbsp;Tambahkan</a>
         <hr>
 
         <div class="table-responsive">
@@ -102,16 +97,16 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                             <td class="text-nowrap">
                                 <a href="edit.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
                                     class="btn btn-dark btn-sm mx-1">
-                                    <img src="img/315164_add_note_icon.png" alt="" width="20px" class="mr-1">
+                                    <img src="img/315164_add_note_icon.png" alt="Edit" width="20px" class="mr-1">
                                     Edit
                                 </a>
                                 <a href="delete.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
                                     class="btn btn-warning btn-sm mx-1 text-white"
-                                    onclick="return confirm('Yakin Data Di Hapus')">
-                                    <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="20px" class="mr-1">
+                                    onclick="return confirm('Yakin Data Di Hapus?')">
+                                    <img src="img/8665971_trash_can_arrow_up_icon.png" alt="Hapus" width="20px" class="mr-1">
                                     Hapus
                                 </a>
-                            </td>
+                            </td>x
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -125,11 +120,7 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
         crossorigin="anonymous"></script>
-    <!-- <script src="js/confir.js"></script> -->
-    <!-- asset plugin  -->
-
     <script src="js/query.js"></script>
-
 </body>
 
 </html>

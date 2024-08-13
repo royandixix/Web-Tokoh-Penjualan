@@ -1,6 +1,6 @@
 <?php 
  
-
+ session_start();
     // Cek apakah pengguna belum login
     if (!isset($_SESSION["login"])) {
         echo "<script>

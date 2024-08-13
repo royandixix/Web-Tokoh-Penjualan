@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 // Cek apakah pengguna belum login
 if (!isset($_SESSION["login"])) {
     echo "<script>
@@ -25,3 +25,5 @@ if (delet_pelanggan($id_pelanggan) > 0) {
                 document.location.href = 'pelanggan.php';
             </script>";
 }
+
+

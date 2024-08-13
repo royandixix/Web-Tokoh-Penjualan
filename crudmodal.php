@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 // Cek apakah pengguna belum login
 if (!isset($_SESSION["login"])) {
     echo "<script>
@@ -41,7 +41,7 @@ if (isset($_POST['edit'])) {
                 alert('Data Akun gagal diedit!');
                 document.location.href = 'crudmodal.php';
             </script>";
-    }
+    }   
 }
 ?>
 <!DOCTYPE html>
@@ -86,9 +86,13 @@ if (isset($_POST['edit'])) {
                     </li>
                 </ul>
             </div>
+
+            <div>
+                <a class="navbar-brand" href="#"><?php echo $_SESSION['nama']; ?></a>
+            </div>
         </div>
     </nav>
-    
+
 
     <div class="container mt-4 pt-5">
         <h2><i class="fa-solid fa-folder-open"></i>&nbspInventory Management Dashboard</h2>
@@ -250,6 +254,8 @@ if (isset($_POST['edit'])) {
             </div>
         </div>
     <?php endforeach; ?>
+    
+
 
     <!-- Modal Hapus -->
     <?php foreach ($data_akun as $akun): ?>
@@ -274,6 +280,7 @@ if (isset($_POST['edit'])) {
         </div>
     <?php endforeach; ?>
 
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>

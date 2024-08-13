@@ -59,24 +59,19 @@ function addbarang($post)
 
 function add_modal($post)
 {
-    global $db; // Memastikan koneksi database tersedia dalam fungsi ini
+    global $db;
     $nama = htmlspecialchars($post['nama'], ENT_QUOTES, 'UTF-8');
     $username = htmlspecialchars($post['username'], ENT_QUOTES, 'UTF-8');
     $email = htmlspecialchars($post['email'], ENT_QUOTES, 'UTF-8');
-    $password = password_hash($post['password'], PASSWORD_DEFAULT);
+    $password = md5($post['password']); // Menggunakan MD5
 
     $level = htmlspecialchars($post['level'], ENT_QUOTES, 'UTF-8');
-    // enskkripsi password
-    $password = password_hash($password, PASSWORD_DEFAULT); 
 
-    // fungsi query
-    $query = "INSERT INTO akun VALUES(null, '$nama', '$username', '$email', '$password', '$level')";
+    // Query insert
+    $query = "INSERT INTO akun (nama, username, email, password, level) VALUES ('$nama', '$username', '$email', '$password', '$level')";
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
-} 
-
-
-
+}
 
 
 
@@ -191,32 +186,35 @@ function edit($post)
     return mysqli_affected_rows($db);
 }
 
-function edit_pelanggan($post) 
+function edit_pelanggan($post)
 {
     global $db;
     $id_pelanggan = $post['id_pelanggan'];
-    $nama = mysqli_real_escape_string($db,$post['nama']);
-    $status = mysqli_real_escape_string($db,$post['status']);
-    $jenis_kelamin = mysqli_real_escape_string($db,$post['jenis_kelamin']);
-    $telepon = mysqli_real_escape_string($db,$post['telepon']);
-    $email = mysqli_real_escape_string($db,$post['email']);
-    $fotoLama = mysqli_real_escape_string($db,$post['fotoLama']);
+    $nama = mysqli_real_escape_string($db, $post['nama']);
+    $status = mysqli_real_escape_string($db, $post['status']);
+    $jenis_kelamin = mysqli_real_escape_string($db, $post['jenis_kelamin']);
+    $telepon = mysqli_real_escape_string($db, $post['telepon']);
+    $email = mysqli_real_escape_string($db, $post['email']);
+    $fotoLama = mysqli_real_escape_string($db, $post['fotoLama']);
 
     // chekc uplaod
-    if($_FILES['foto']['error'] == 4){
+    if ($_FILES['foto']['error'] == 4) {
         $foto = $fotoLama;
-    }else{
+    } else {
         $foto = uploaded_file();
     }
     // query insert Edit Insert Delete
+
     $query = "UPDATE pelanggan SET nama = '$nama', status = '$status', jenis_kelamin = '$jenis_kelamin', telepon = '$telepon', email = '$email', foto = '$foto' WHERE id_pelanggan = $id_pelanggan";
-    mysqli_query($db,$query);
+    mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 
 }
 
-function edit_modal($post){
-  
+
+function edit_modal($post)
+{
+
     global $db;
     $id_akun = $post['id_akun'];
     $nama = htmlspecialchars($post['nama']);
@@ -227,15 +225,11 @@ function edit_modal($post){
 
     $password = password_hash($password, PASSWORD_DEFAULT);
     $query = "UPDATE akun SET nama = '$nama', username = '$username', email = '$email', password = '$password', level = '$level' WHERE id_akun = $id_akun";
-    
+
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 
-    
 }
- 
-
-
 
 
 // Fungsi untuk menghapus barang berdasarkan id_barang
@@ -257,12 +251,13 @@ function delet_pelanggan($id_pelanggan)
     $query = "DELETE FROM pelanggan  WHERE id_pelanggan = '$id_pelanggan'";
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
-     
+
 
 }
 
-function delet_akun($id_akun){ 
-    global $db; 
+function delet_akun($id_akun)
+{
+    global $db;
     $id = mysqli_real_escape_string($db, $id_akun); // Amankan input agar tidak rentan terhadap SQL Injection
     $query = "DELETE FROM akun WHERE id_akun = '$id_akun'";
     return mysqli_query($db, $query);

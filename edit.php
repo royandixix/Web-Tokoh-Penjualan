@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 // Cek apakah pengguna belum login
 if (!isset($_SESSION["login"])) {
@@ -67,7 +67,7 @@ if (isset($_POST['ubah'])) {
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Toko Online Mamuju</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -87,6 +87,10 @@ if (isset($_POST['ubah'])) {
                         <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbspData Akun</a>
                     </li>
                 </ul>
+            </div>
+
+            <div>
+                <a class="navbar-brand" href="#"><?php echo $_SESSION['nama']; ?></a>
             </div>
         </div>
     </nav>

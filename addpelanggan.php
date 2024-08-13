@@ -1,7 +1,7 @@
 <?php
 
 
-
+session_start();
 // Cek apakah pengguna belum login
 if (!isset($_SESSION["login"])) {
     echo "<script>
@@ -70,7 +70,7 @@ if (isset($_POST['kirim'])) {
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Toko Online Mamuju</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -91,11 +91,15 @@ if (isset($_POST['kirim'])) {
                     </li>
                 </ul>
             </div>
+
+            <div>
+                <a class="navbar-brand" href="#"><?php echo $_SESSION['nama']; ?></a>
+            </div>
         </div>
     </nav>
 
     <div class="container mt-4 pt-5">
-    <h2><i class="fa-solid fa-folder-open"></i>&nbspInventory Management Dashboard</h2>
+        <h2><i class="fa-solid fa-folder-open"></i>&nbspInventory Management Dashboard</h2>
         <blockquote class="blockquote">
             <p>Tambah Pelanggan</p>
         </blockquote>

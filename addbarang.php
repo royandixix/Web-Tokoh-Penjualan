@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 // Cek apakah pengguna belum login
 if (!isset($_SESSION["login"])) {
     echo "<script>
@@ -79,6 +79,10 @@ if (isset($_POST['kirim'])) {
                         <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbspData Akun</a>
                     </li>
                 </ul>
+            </div>
+
+            <div>
+                <a class="navbar-brand" href="#"><?php echo $_SESSION['nama']; ?></a>
             </div>
         </div>
     </nav>
