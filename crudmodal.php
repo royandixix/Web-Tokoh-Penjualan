@@ -10,6 +10,9 @@ if (!isset($_SESSION["login"])) {
     exit; // Menghentikan eksekusi script selanjutnya
 }
 
+
+
+
 require 'config/fungsi.php';
 
 $data_akun = query("SELECT * FROM akun");
@@ -28,6 +31,12 @@ if (isset($_POST['simpan'])) {
             </script>";
     }
 }
+//  tampil data user lain
+$id_akun = $_SESSION['id_akun'];
+$data_bylogin = select("SELECT * FROM akun WHERE id_akun = '$id_akun'");
+
+//jika tombool
+
 
 // jika tombol 'edit' ditekan jalankan script berikut
 if (isset($_POST['edit'])) {
@@ -41,7 +50,7 @@ if (isset($_POST['edit'])) {
                 alert('Data Akun gagal diedit!');
                 document.location.href = 'crudmodal.php';
             </script>";
-    }   
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -74,21 +83,34 @@ if (isset($_POST['edit'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Barang</a>
-                    </li>
+                    <?php if ($_SESSION['level'] == 1 or $_SESSION['level'] == 2): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Barang</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="pelanggan.php"><i
-                                class="fa-solid fa-person-military-pointing"></i>&nbspPelanggan</a>
+                                class="fa-solid fa-person-military-pointing"></i>&nbsp;Pelanggan</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbspData Akun</a>
+                        <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbsp;Data Akun</a>
+                    </li>
+
+                </ul>
+                <!-- Tambahkan ms-auto untuk memindahkan elemen berikut ke kanan -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Hai <?php echo htmlspecialchars($_SESSION['nama'], ENT_QUOTES, 'UTF-8'); ?>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><i
+                                class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</a>
                     </li>
                 </ul>
-            </div>
-
-            <div>
-                <a class="navbar-brand" href="#"><?php echo $_SESSION['nama']; ?></a>
             </div>
         </div>
     </nav>
@@ -99,9 +121,9 @@ if (isset($_POST['edit'])) {
         <blockquote class="blockquote">
             <p>Data Akun</p>
         </blockquote>
-
-        <button type="button" class="btn btn-dark mb-1" data-bs-toggle="modal" data-bs-target="#modalTambah"><i
-                class="fa-solid fa-person-circle-plus"></i>&nbspTambahkan</button>
+        <?php if($_SESSION['level'] == 1 ) : ?>
+        <button type="button" class="btn btn-dark mb-1" data-bs-toggle="modal" data-bs-target="#modalTambah"><i class="fa-solid fa-person-circle-plus"></i>&nbspTambahkan</button>
+        <?php endif; ?>
         <hr>
 
         <div class="table-responsive">
@@ -180,7 +202,8 @@ if (isset($_POST['edit'])) {
                             <select name="level" id="level" class="form-control" required>
                                 <option value="">Pilih Level</option>
                                 <option value="1">Admin</option>
-                                <option value="2">User</option>
+                                <option value="2">pengguna Barang</option>
+                                <option value="3">Pelanggan </option>
                             </select>
                         </div>
                 </div>
@@ -254,7 +277,7 @@ if (isset($_POST['edit'])) {
             </div>
         </div>
     <?php endforeach; ?>
-    
+
 
 
     <!-- Modal Hapus -->
@@ -280,7 +303,7 @@ if (isset($_POST['edit'])) {
         </div>
     <?php endforeach; ?>
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>

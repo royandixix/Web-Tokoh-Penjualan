@@ -9,6 +9,14 @@ if (!isset($_SESSION["login"])) {
           </script>";
     exit; // Menghentikan eksekusi script selanjutnya
 }
+// sesuai user login
+if ($_SESSION["level"] != 1 or $_SESSION['level'] !=2 ) {
+    echo "<script>
+            alert('Anda tidak bisa mengakses halaman ini');
+            document.location.href = 'crudmodal.php';
+          </script>";
+    exit; // Menghentikan eksekusi script selanjutnya
+}
 
 require 'config/fungsi.php';
 
@@ -46,23 +54,38 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
+                    <?php if ($_SESSION['level'] == 1 or $_SESSION['level'] == 2): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Barang</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Barang</a>
+                        <a class="nav-link" href="pelanggan.php"><i
+                                class="fa-solid fa-person-military-pointing"></i>&nbsp;Pelanggan</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pelanggan.php"><i class="fa-solid fa-person-military-pointing"></i>&nbsp;Pelanggan</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbsp;Data Akun</a>
                     </li>
-                </ul>
-            </div>
 
-            <div>
-                <a class="navbar-brand" href="#"><?php echo htmlspecialchars($_SESSION['nama'], ENT_QUOTES, 'UTF-8'); ?></a>
+                </ul>
+                <!-- Tambahkan ms-auto untuk memindahkan elemen berikut ke kanan -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Hai <?php echo htmlspecialchars($_SESSION['nama'], ENT_QUOTES, 'UTF-8'); ?>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><i
+                                class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
+
 
     <div class="container mt-4 pt-5">
         <h2><i class="fa-solid fa-folder-open"></i>&nbsp;Inventory Management Dashboard</h2>
@@ -70,7 +93,8 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
             <p>Berisi Daftar Semua Barang</p>
         </blockquote>
 
-        <a href="addbarang.php" class="btn btn-dark mb-1"><i class="fa-solid fa-person-circle-plus"></i>&nbsp;Tambahkan</a>
+        <a href="addbarang.php" class="btn btn-dark mb-1"><i
+                class="fa-solid fa-person-circle-plus"></i>&nbsp;Tambahkan</a>
         <hr>
 
         <div class="table-responsive">
@@ -103,7 +127,8 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                                 <a href="delete.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
                                     class="btn btn-warning btn-sm mx-1 text-white"
                                     onclick="return confirm('Yakin Data Di Hapus?')">
-                                    <img src="img/8665971_trash_can_arrow_up_icon.png" alt="Hapus" width="20px" class="mr-1">
+                                    <img src="img/8665971_trash_can_arrow_up_icon.png" alt="Hapus" width="20px"
+                                        class="mr-1">
                                     Hapus
                                 </a>
                             </td>x

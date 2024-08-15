@@ -11,6 +11,7 @@ if (!isset($_SESSION["login"])) {
     exit; // Menghentikan eksekusi script selanjutnya
 }
 
+
 require 'config/fungsi.php';
 
 
@@ -79,21 +80,34 @@ if (isset($_POST['kirim'])) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Barang</a>
-                    </li>
+                    <?php if ($_SESSION['level'] == 1 or $_SESSION['level'] == 2): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Barang</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="pelanggan.php"><i
-                                class="fa-solid fa-person-military-pointing"></i>&nbspPelanggan</a>
+                                class="fa-solid fa-person-military-pointing"></i>&nbsp;Pelanggan</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbspData Akun</a>
+                        <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbsp;Data Akun</a>
+                    </li>
+
+                </ul>
+                <!-- Tambahkan ms-auto untuk memindahkan elemen berikut ke kanan -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Hai <?php echo htmlspecialchars($_SESSION['nama'], ENT_QUOTES, 'UTF-8'); ?>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><i
+                                class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</a>
                     </li>
                 </ul>
-            </div>
-
-            <div>
-                <a class="navbar-brand" href="#"><?php echo $_SESSION['nama']; ?></a>
             </div>
         </div>
     </nav>
