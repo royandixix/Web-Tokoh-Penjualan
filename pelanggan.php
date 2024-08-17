@@ -2,15 +2,24 @@
 
 
 session_start();
-// Cek apakah pengguna belum login
+
+// Cek apakah pengguna sudah login
 if (!isset($_SESSION["login"])) {
     echo "<script>
-            alert('Kamu Harus Login Dulu');
-            document.location.href = 'login.php';
-          </script>";
-    exit; // Menghentikan eksekusi script selanjutnya
+                        alert('Kamu harus login dulu');
+                        document.location.href = 'login.php';
+                    </script>";
+    exit;
 }
 
+// Cek apakah pengguna memiliki level yang sesuai
+if ($_SESSION['level'] != 1 && $_SESSION['level'] != 3) {
+    echo "<script>
+                        alert('Perhatian Halaman Ini hanya dapat diakses oleh Pelanggan.');
+                        document.location.href = 'index.php';
+                    </script>";
+    exit;
+}
 
 
 require 'config/fungsi.php';
@@ -76,8 +85,11 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php"><i
-                                class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</a>
+                        <a class="nav-link" href="logout.php"
+                            onclick="return confirm('Apakah Anda yakin ingin keluar?')">
+                            <i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout
+                        </a>
+
                     </li>
                 </ul>
             </div>
@@ -122,21 +134,18 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                             <td class="text-nowrap">
                                 <a href="detail.php?id_pelanggan=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
                                     class="btn btn-primary btn-sm mx-1">
-                                    <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="20px" class="mr-1">
-                                    Detail
+                                    <i class="fa-solid fa-info-circle"></i>&nbsp;Detail
                                 </a>
 
                                 <a href="editpelanggan.php?id_pelanggan=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
                                     class="btn btn-dark btn-sm mx-1 text-white">
-                                    <img src="img/315164_add_note_icon.png" alt="" width="20px" class="mr-1">
-                                    Edit
+                                    <i class="fa-solid fa-pen"></i>&nbsp;Edit
                                 </a>
 
                                 <a href="deletepelanggan.php?id_pelanggan=<?php echo urlencode($pelanggan['id_pelanggan']); ?>"
                                     class="btn btn-warning btn-sm mx-1 text-white"
-                                    onclick="return confirm('Yakin Data Mahasiswa Akan Di hapus')">
-                                    <img src="img/8665971_trash_can_arrow_up_icon.png" alt="" width="20px" class="mr-1">
-                                    Hapus
+                                    onclick="return confirm('Yakin Data Pelanggan Akan Dihapus?')">
+                                    <i class="fa-solid fa-trash"></i>&nbsp;Hapus
                                 </a>
                             </td>
                         </tr>

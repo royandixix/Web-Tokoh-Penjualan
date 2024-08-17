@@ -78,8 +78,11 @@ if ($id_pelanggan > 0) {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php"><i
-                                class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</a>
+                        <a class="nav-link" href="logout.php"
+                            onclick="return confirm('Apakah Anda yakin ingin keluar?')">
+                            <i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout
+                        </a>
+
                     </li>
                 </ul>
             </div>

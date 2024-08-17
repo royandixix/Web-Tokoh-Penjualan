@@ -81,3 +81,19 @@ body {
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
 }
+
+
+/* CSS tambahan untuk memastikan tabel terlihat rapi */
+.table th, .table td {
+  vertical-align: middle; /* Menyelaraskan teks secara vertikal */
+  text-align: left; /* Menyelaraskan teks ke kiri (atau bisa diubah sesuai kebutuhan) */
+}
+
+.table th {
+  background-color: #f8f9fa; /* Warna latar belakang untuk header */
+}
+
+/* Aturan tambahan untuk menyesuaikan lebar kolom jika diperlukan */
+.table td, .table th {
+  white-space: nowrap; /* Mencegah teks membungkus ke baris berikutnya */
+}

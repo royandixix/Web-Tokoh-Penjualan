@@ -9,10 +9,11 @@ if (!isset($_SESSION["login"])) {
           </script>";
     exit; // Menghentikan eksekusi script selanjutnya
 }
-// sesuai user login
-if ($_SESSION["level"] != 1 or $_SESSION['level'] !=2 ) {
+
+// Batasi akses berdasarkan level
+if ($_SESSION["level"] != 1 && $_SESSION["level"] != 2) {
     echo "<script>
-            alert('Anda tidak bisa mengakses halaman ini');
+            alert('Perhatian Halaman Ini hanya dapat diakses oleh Admin dan Operator Barang.');
             document.location.href = 'crudmodal.php';
           </script>";
     exit; // Menghentikan eksekusi script selanjutnya
@@ -54,21 +55,22 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <?php if ($_SESSION['level'] == 1 or $_SESSION['level'] == 2): ?>
+                    <?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Barang</a>
                         </li>
                     <?php endif; ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pelanggan.php"><i
-                                class="fa-solid fa-person-military-pointing"></i>&nbsp;Pelanggan</a>
-                    </li>
-
+                    <?php if ($_SESSION['level'] == 1): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pelanggan.php"><i
+                                    class="fa-solid fa-person-military-pointing"></i>&nbsp;Pelanggan</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbsp;Data Akun</a>
                     </li>
-
                 </ul>
+
                 <!-- Tambahkan ms-auto untuk memindahkan elemen berikut ke kanan -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -78,14 +80,16 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="logout.php"><i
-                                class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</a>
+                        <a class="nav-link" href="logout.php"
+                            onclick="return confirm('Apakah Anda yakin ingin keluar?')">
+                            <i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout
+                        </a>
+
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
 
     <div class="container mt-4 pt-5">
         <h2><i class="fa-solid fa-folder-open"></i>&nbsp;Inventory Management Dashboard</h2>
@@ -93,8 +97,10 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
             <p>Berisi Daftar Semua Barang</p>
         </blockquote>
 
-        <a href="addbarang.php" class="btn btn-dark mb-1"><i
-                class="fa-solid fa-person-circle-plus"></i>&nbsp;Tambahkan</a>
+        <?php if ($_SESSION['level'] == 1): ?>
+            <a href="addbarang.php" class="btn btn-dark mb-1"><i
+                    class="fa-solid fa-person-circle-plus"></i>&nbsp;Tambahkan</a>
+        <?php endif; ?>
         <hr>
 
         <div class="table-responsive">
@@ -119,26 +125,27 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                             <td class="text-nowrap">Rp. <?php echo number_format($br["harga"], 0, ',', '.'); ?></td>
                             <td class="text-nowrap"><?php echo date('d/m/y | H:i:s', strtotime($br["tanggal"])); ?></td>
                             <td class="text-nowrap">
-                                <a href="edit.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
-                                    class="btn btn-dark btn-sm mx-1">
-                                    <img src="img/315164_add_note_icon.png" alt="Edit" width="20px" class="mr-1">
-                                    Edit
-                                </a>
-                                <a href="delete.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
-                                    class="btn btn-warning btn-sm mx-1 text-white"
-                                    onclick="return confirm('Yakin Data Di Hapus?')">
-                                    <img src="img/8665971_trash_can_arrow_up_icon.png" alt="Hapus" width="20px"
-                                        class="mr-1">
-                                    Hapus
-                                </a>
-                            </td>x
+                                <?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2): ?>
+                                    <a href="edit.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
+                                        class="btn btn-dark btn-sm mx-1">
+                                        <i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit
+                                    </a>
+                                    <?php if ($_SESSION['level'] == 1): ?>
+                                        <a href="delete.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
+                                            class="btn btn-warning btn-sm mx-1 text-dark"
+                                            onclick="return confirm('Yakin Data Di Hapus?')">
+                                            <i class="fa-solid fa-trash-can"></i>&nbsp;Hapus
+                                        </a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-    </div>
 
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
