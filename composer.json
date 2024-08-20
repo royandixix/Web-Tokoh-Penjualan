@@ -1,0 +1,17 @@
+{
+    "name": "acer/web",
+    "autoload": {
+        "psr-4": {
+            "Acer\\Web\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "royandi",
+            "email": "randiroyandi@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^2.2"
+    }
+}

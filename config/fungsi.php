@@ -1,12 +1,7 @@
 <?php
 
-// Koneksi ke database
-$db = mysqli_connect(
-    "localhost",
-    "root",
-    "",
-    "db_peker"
-);
+$db = mysqli_connect('localhost', 'root', '', 'penjualan');
+
 
 if (!$db) {
     die

@@ -44,18 +44,37 @@ $data_bylogin = query("SELECT * FROM akun WHERE id_akun = '$id_akun'");
 
 // Jika tombol 'edit' ditekan
 if (isset($_POST['edit'])) {
+    var_dump($_POST); // Debugging
     if (edit_modal($_POST) > 0) {
         echo "<script>
-                                alert('Data akun berhasil diedit!');
-                                document.location.href = 'crudmodal.php';
-                            </script>";
+                alert('Data akun berhasil diedit!');
+                document.location.href = 'crudmodal.php';
+              </script>";
     } else {
         echo "<script>
-                                alert('Data akun gagal diedit!');
-                                document.location.href = 'crudmodal.php';
-                            </script>";
+                alert('Data akun gagal diedit!');
+                document.location.href = 'crudmodal.php';
+              </script>";
     }
 }
+
+// Jika tombol 'hapus' ditekan
+if (isset($_POST['hapus'])) {
+    $id_akun = $_POST['id_akun'];
+
+    if (delet_akun($id_akun) > 0) {
+        echo "<script>
+                        alert('Data akun berhasil dihapus!');
+                        document.location.href = 'crudmodal.php';
+                    </script>";
+    } else {
+        echo "<script>
+                        alert('Data akun gagal dihapus!');
+                        document.location.href = 'crudmodal.php';
+                    </script>";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -129,6 +148,10 @@ if (isset($_POST['edit'])) {
         <?php if ($_SESSION['level'] == 1): ?>
             <button type="button" class="btn btn-dark mb-1" data-bs-toggle="modal" data-bs-target="#modalTambah"><i
                     class="fa-solid fa-person-circle-plus"></i>&nbsp;Tambahkan</button>
+            <a href="downlwoad-excel-pelanggan.php" class="btn btn-success mb-1" role="button">
+                <i class="fa-solid fa-download"></i>&nbsp;Unduh Excel
+            </a>
+
         <?php endif; ?>
         <hr class="">
 
@@ -254,7 +277,7 @@ if (isset($_POST['edit'])) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="update.php" method="post">
+                        <form action="" method="post">
                             <input type="hidden" name="id_akun" value="<?php echo htmlspecialchars($akun['id_akun']); ?>">
                             <div class="mb-3">
                                 <label for="nama">Nama</label>
@@ -282,7 +305,6 @@ if (isset($_POST['edit'])) {
                                 </div>
                                 <small class="form-text text-muted">Kosongkan jika tidak ingin mengganti password.</small>
                             </div>
-
                             <?php if ($_SESSION['level'] == 1): ?>
                                 <div class="mb-3">
                                     <label for="level">Level</label>
@@ -299,15 +321,9 @@ if (isset($_POST['edit'])) {
                                 <input type="hidden" name="level" id="level"
                                     value="<?php echo htmlspecialchars($akun['level']); ?>">
                             <?php endif; ?>
-                            <?php if ($_SESSION['level'] == 3): ?>
-                                <div class="mb-3">
-                                    <label for="levelDisplay">Level</label>
-                                    <p id="levelDisplay"><?php echo htmlspecialchars($akun['level']); ?></p>
-                                </div>
-                            <?php endif; ?>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" name="edit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>
@@ -315,6 +331,7 @@ if (isset($_POST['edit'])) {
             </div>
         </div>
     <?php endforeach; ?>
+
 
 
 
@@ -330,12 +347,12 @@ if (isset($_POST['edit'])) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="delete.php" method="post">
+                            <form action="" method="post">
                                 <input type="hidden" name="id_akun" value="<?php echo htmlspecialchars($akun['id_akun']); ?>">
                                 <p>Apakah Anda yakin ingin menghapus akun <?php echo htmlspecialchars($akun['nama']); ?>?</p>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                    <button type="submit" name="hapus" class="btn btn-danger">Hapus</button>
                                 </div>
                             </form>
                         </div>
@@ -344,6 +361,7 @@ if (isset($_POST['edit'])) {
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.14.1/dist/umd/popper.min.js"
         integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+0vJuvQ3xG9nG7dttRKnQ5L+Z7f3U58ZTl1Bejt6V"
