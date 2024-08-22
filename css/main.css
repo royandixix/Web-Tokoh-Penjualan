@@ -97,3 +97,30 @@ body {
 .table td, .table th {
   white-space: nowrap; /* Mencegah teks membungkus ke baris berikutnya */
 }
+
+
+/* ini navbar */
+    /* Mengecilkan ukuran navbar lebih lanjut */
+    .navbar {
+      padding: 0.40rem 0.5rem; /* Mengurangi padding navbar */
+      font-size: 0.8rem; /* Mengurangi ukuran font */
+  }
+  
+  /* Mengecilkan ukuran elemen dalam navbar */
+  .navbar-nav .nav-link {
+      padding: 0.25rem 0.5rem; /* Mengurangi padding elemen dalam navbar */
+  }
+  
+  .navbar-brand {
+      font-size: 1rem; /* Mengurangi ukuran font brand */
+  }
+  
+  .navbar-toggler {
+      padding: 0.25rem 0.25rem; /* Mengurangi padding tombol toggler */
+  }
+  
+  /* Mengecilkan ukuran icon dalam navbar jika diperlukan */
+  .navbar-nav .nav-link i {
+      font-size: 1rem; /* Mengurangi ukuran icon */
+  }
+  

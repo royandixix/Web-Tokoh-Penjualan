@@ -89,6 +89,7 @@ if (isset($_POST['login'])) {
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
         integrity="sha384-OH68wM/WZj/JLUq9iN4h4W1TuEELnqWz6d9vcxgE6A/r8ioZ4ZON5zYo6ojF1J8C" crossorigin="anonymous"></script>
+        <script src="https://cdn.ckeditor.com/4.25.0-lts/standard/ckeditor.js"></script>
 </body>
 
 </html>

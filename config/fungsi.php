@@ -39,10 +39,12 @@ function addbarang($post)
     $nama = mysqli_real_escape_string($db, $post['nama']);
     $jumlah = mysqli_real_escape_string($db, $post['jumlah']);
     $harga = mysqli_real_escape_string($db, $post['harga']);
+    $barcode = mt_rand(10000, 99999); // Menghasilkan angka acak 5 digit
 
-    // Query INSERT
-    $query = "INSERT INTO barang (nama, jumlah, harga, tanggal) 
-              VALUES ('$nama', '$jumlah', '$harga', CURRENT_TIMESTAMP)";
+
+    // Query INSERT yang diperbaiki
+    $query = "INSERT INTO barang (nama, jumlah, harga, barcode, tanggal) 
+              VALUES ('$nama', '$jumlah', '$harga', '$barcode', CURRENT_TIMESTAMP)";
 
     if (!mysqli_query($db, $query)) {
         die("Error: " . mysqli_error($db));
@@ -50,6 +52,7 @@ function addbarang($post)
 
     return mysqli_affected_rows($db);
 }
+
 // Pastikan untuk menutup koneksi setelah selesai
 
 function add_modal($post)
@@ -79,6 +82,7 @@ function addPelanggan($post)
     $status = htmlspecialchars($post['status'], ENT_QUOTES, 'UTF-8');
     $jenis_kelamin = htmlspecialchars($post['jenis_kelamin'], ENT_QUOTES, 'UTF-8');
     $telepon = htmlspecialchars($post['telepon'], ENT_QUOTES, 'UTF-8');
+    $alamat = $post['alamat'];
     $email = htmlspecialchars($post['email'], ENT_QUOTES, 'UTF-8');
 
     // Pastikan file upload berhasil
@@ -89,7 +93,7 @@ function addPelanggan($post)
     }
 
     // Simpan informasi pelanggan ke database
-    $pelanggan = "INSERT INTO pelanggan (nama, status, jenis_kelamin, telepon, email, foto) VALUES ('$nama', '$status', '$jenis_kelamin', '$telepon', '$email', '$fileName')";
+    $pelanggan = "INSERT INTO pelanggan (nama, status, jenis_kelamin, telepon, alamat, email, foto) VALUES ('$nama', '$status', '$jenis_kelamin', '$telepon', '$alamat', '$email', '$fileName')";
     return execute($pelanggan);
 }
 
@@ -169,12 +173,14 @@ function edit($post)
     $nama = mysqli_real_escape_string($db, $post['nama']);
     $jumlah = mysqli_real_escape_string($db, $post['jumlah']);
     $harga = mysqli_real_escape_string($db, $post['harga']);
+    $barcode = mt_rand(10000, 99999); // Menghasilkan angka acak 5 digit
 
     // query Insert/Update
     $query = "UPDATE barang SET 
     nama = '$nama', 
     jumlah ='$jumlah',
-    harga = '$harga' 
+    harga = '$harga' ,
+    barcode = '$barcode'
     WHERE id_barang = '$id_barang'";
 
     mysqli_query($db, $query);
@@ -189,6 +195,7 @@ function edit_pelanggan($post)
     $status = mysqli_real_escape_string($db, $post['status']);
     $jenis_kelamin = mysqli_real_escape_string($db, $post['jenis_kelamin']);
     $telepon = mysqli_real_escape_string($db, $post['telepon']);
+    $alamat = $post['alamat'];
     $email = mysqli_real_escape_string($db, $post['email']);
     $fotoLama = mysqli_real_escape_string($db, $post['fotoLama']);
 
@@ -200,7 +207,7 @@ function edit_pelanggan($post)
     }
     // query insert Edit Insert Delete
 
-    $query = "UPDATE pelanggan SET nama = '$nama', status = '$status', jenis_kelamin = '$jenis_kelamin', telepon = '$telepon', email = '$email', foto = '$foto' WHERE id_pelanggan = $id_pelanggan";
+    $query = "UPDATE pelanggan SET nama = '$nama', status = '$status', jenis_kelamin = '$jenis_kelamin', telepon = '$telepon', alamat = '$alamat', email = '$email', foto = '$foto' WHERE id_pelanggan = $id_pelanggan";
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 

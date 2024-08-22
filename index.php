@@ -44,6 +44,9 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap5.css">
 </head>
+<style>
+
+</style>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -104,13 +107,14 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
         <hr>
 
         <div class="table-responsive">
-            <table class="table table-striped" id="example">
+            <table class="table table-hover" id="example">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
+                        <th>Barcode</th>
                         <th>Tanggal</th>
                         <th>Aksi</th>
                     </tr>
@@ -123,6 +127,12 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                             <td class="text-nowrap"><?php echo htmlspecialchars($br["nama"], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td class="text-nowrap"><?php echo htmlspecialchars($br["jumlah"], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td class="text-nowrap">Rp. <?php echo number_format($br["harga"], 0, ',', '.'); ?></td>
+                            <td>
+
+                            <img alt="barcode" src="barcode.php?codetype=Code128&size=10&text=<?php echo $br['barcode'] ?>&print=true&rand=<?php echo time(); ?>"/>
+
+                            </td>
+
                             <td class="text-nowrap"><?php echo date('d/m/y | H:i:s', strtotime($br["tanggal"])); ?></td>
                             <td class="text-nowrap">
                                 <?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2): ?>
@@ -153,6 +163,7 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
         crossorigin="anonymous"></script>
     <script src="js/query.js"></script>
+    <script src="https://cdn.ckeditor.com/4.25.0-lts/standard/ckeditor.js"></script>
 </body>
 
 </html>

@@ -104,6 +104,15 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
 
         <a href="addpelanggan.php" class="btn btn-dark mb-1"><i
                 class="fa-solid fa-person-circle-plus"></i>&nbspTambahkan</a>
+        <a href="download-excel-pelanggan.php" class="btn btn-success mb-1" role="button">
+            <i class="fa-solid fa-file-excel"></i>&nbsp;Unduh Excel
+        </a>
+
+        <a href="downlwoad-pdf-pelanggan.php" class="btn btn-danger mb-1" role="button">
+            <i class="fa-solid fa-file-pdf"></i>&nbsp;Unduh PDF
+        </a>
+
+
         <hr>
 
         <div class="table-responsive">
@@ -115,6 +124,7 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                         <th>Status</th>
                         <th>Jenis Kelamin</th>
                         <th>No Telepon</th>
+                      
                         <th>Email</th>
                         <!-- Hapus kolom Foto dari header tabel -->
                         <th>Aksi</th>
@@ -129,6 +139,7 @@ $data_pelanggan = query("SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
                             <td><?php echo htmlspecialchars($pelanggan['status'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($pelanggan['jenis_kelamin'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php echo htmlspecialchars($pelanggan['telepon'], ENT_QUOTES, 'UTF-8'); ?></td>
+                         
                             <td><?php echo htmlspecialchars($pelanggan['email'], ENT_QUOTES, 'UTF-8'); ?></td>
                             <!-- Hapus kolom Foto dari baris tabel -->
                             <td class="text-nowrap">

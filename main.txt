@@ -8,3 +8,6 @@ urlencode(): Fungsi ini digunakan untuk mengenkripsi parameter dalam URL, memast
 <meta charset="utf-8" />: Tag ini memastikan bahwa encoding UTF-8 diterapkan pada halaman web, menjamin bahwa karakter-karakter dari berbagai bahasa ditampilkan dengan benar dan konsisten di seluruh browser.
 
 
+ini link
+CKEDITOR
+https://cdn.ckeditor.com/

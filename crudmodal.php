@@ -148,9 +148,8 @@ if (isset($_POST['hapus'])) {
         <?php if ($_SESSION['level'] == 1): ?>
             <button type="button" class="btn btn-dark mb-1" data-bs-toggle="modal" data-bs-target="#modalTambah"><i
                     class="fa-solid fa-person-circle-plus"></i>&nbsp;Tambahkan</button>
-            <a href="downlwoad-excel-pelanggan.php" class="btn btn-success mb-1" role="button">
-                <i class="fa-solid fa-download"></i>&nbsp;Unduh Excel
-            </a>
+           
+
 
         <?php endif; ?>
         <hr class="">

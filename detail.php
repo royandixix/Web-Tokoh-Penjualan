@@ -114,13 +114,17 @@ if ($id_pelanggan > 0) {
                         <td><?php echo htmlspecialchars($pelanggan['telepon'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
                     <tr>
+                        <td>Alamat</td>
+                        <td><?php echo htmlspecialchars($pelanggan['alamat'], ENT_QUOTES, 'UTF-8'); ?></td>
+                    </tr>
+                    <tr>
                         <td>Email</td>
                         <td><?php echo htmlspecialchars($pelanggan['email'], ENT_QUOTES, 'UTF-8'); ?></td>
                     </tr>
                     <tr>
                         <td>Foto</td>
                         <td><img src="img/<?php echo htmlspecialchars($pelanggan['foto'], ENT_QUOTES, 'UTF-8'); ?>"
-                                alt="Foto Pelanggan" class="img-fuid" width="150"></td>
+                                alt="Foto Pelanggan" class="img-fuid" width="100"></td>
                     </tr>
                 </tbody>
             </table>
@@ -136,7 +140,10 @@ if ($id_pelanggan > 0) {
     <script src="js/query.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.ckeditor.com/4.25.0-lts/standard/ckeditor.js"></script>
+
 </body>
 
 </html>

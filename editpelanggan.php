@@ -168,6 +168,15 @@ if (isset($_POST['kirim'])) {
                     </div>
                 </div>
 
+                <div class="col-md">
+                    <div class="form-floating">
+                        <textarea class="form-control" id="alamat" name="alamat" placeholder="Alamat" rows="3"
+                            required><?php echo htmlspecialchars($pelanggan['alamat'], ENT_QUOTES, 'UTF-8'); ?></textarea>
+                        <label for="alamat">Alamat</label>
+                    </div>
+                </div>
+
+
                 <div class="row g-2 mt-2">
                     <div class="col-md">
                         <div class="form-floating">
