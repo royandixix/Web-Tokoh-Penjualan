@@ -1,3 +1,29 @@
+<?php
+session_start();
+
+// Cek apakah pengguna belum login
+if (!isset($_SESSION["login"])) {
+    echo "<script>
+            alert('Kamu Harus Login Dulu');
+            document.location.href = 'login.php';
+          </script>";
+    exit; // Menghentikan eksekusi script selanjutnya
+}
+
+// Batasi akses berdasarkan level
+if ($_SESSION["level"] != 1 && $_SESSION["level"] != 2) {
+    echo "<script>
+            alert('Perhatian Halaman Ini hanya dapat diakses oleh Admin dan Operator Barang.');
+            document.location.href = 'crudmodal.php';
+          </script>";
+    exit; // Menghentikan eksekusi script selanjutnya
+}
+
+require 'config/fungsi.php';
+
+// Ambil semua data dari tabel 'barang'
+$result = query("SELECT * FROM barang ORDER BY id_barang DESC");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +34,7 @@
     <title>Bootstrap Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="dhasboard/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -17,6 +43,9 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.3/css/dataTables.bootstrap5.css">
+    <!-- Pastikan menggunakan versi yang sesuai -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
 <style>
     /* Tambahkan CSS khusus jika perlu */
@@ -40,18 +69,27 @@
                         </a>
                     </li>
                     <li class="sidebar">
-                        <a href="crudmodal.php" class="sidebar-link"><i class="fa-solid fa-file-lines pe-2"></i> Barang</a>
+                        <a href="#" class="sidebar-link"><i class="fa-solid fa-file-lines pe-2"></i>
+                            Barang</a>
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link"><i class="fa-solid fa-sliders pe-2"></i> Pelanggan</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link"><i class="fa-regular fa-user pe-2"></i> Data akun</a>
+                        <a href="data-akun.html" class="sidebar-link"><i class="fa-regular fa-user pe-2"></i> Data
+                            akun</a>
                     </li>
+
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link"><i class="fa-regular fa-user pe-2"></i>Logout</a>
+                    </li>
+
+
 
                     <li class="sidebar-header">
                         Multi Level Menu
                     </li>
+
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#multi" data-bs-toggle="collapse"
                             aria-expanded="false"><i class="fa-solid fa-share-nodes pe-2"></i>
@@ -85,7 +123,7 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="image/profile.jpg" class="avatar img-fluid rounded" alt="">
+                                <img src="dhasboard/dhasboar/image/profile.jpg" class="avatar img-fluid rounded" alt="">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a href="#" class="dropdown-item">Profile</a></li>
@@ -113,8 +151,8 @@
                                             </div>
                                         </div>
                                         <div class="col-6 align-self-end text-end">
-                                            <img src="image/customer-support.jpg" class="img-fluid illustration-img"
-                                                alt="">
+                                            <img src="dhasboar/image/customer-support.jpg"
+                                                class="img-fluid illustration-img" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -156,38 +194,62 @@
                                 necessitatibus reprehenderit itaque!
                             </h6>
                         </div>
-                        <div class="card-body">
-                            <table class="table">
+
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="example">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Jumlah</th>
+                                        <th>Harga</th>
+                                        <th>Barcode</th>
+                                        <th>Tanggal</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    <?php $no = 1; ?>
+                                    <?php foreach ($result as $br): ?>
+                                        <tr>
+                                            <td class="text-nowrap">
+                                                <?php echo htmlspecialchars($no++, ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td class="text-nowrap">
+                                                <?php echo htmlspecialchars($br["nama"], ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td class="text-nowrap">
+                                                <?php echo htmlspecialchars($br["jumlah"], ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td class="text-nowrap">Rp.
+                                                <?php echo number_format($br["harga"], 0, ',', '.'); ?></td>
+                                            <td>
+
+                                                <img alt="barcode"
+                                                    src="barcode.php?codetype=Code128&size=10&text=<?php echo $br['barcode'] ?>&print=true&rand=<?php echo time(); ?>" />
+
+                                            </td>
+
+                                            <td class="text-nowrap">
+                                                <?php echo date('d/m/y | H:i:s', strtotime($br["tanggal"])); ?></td>
+                                            <td class="text-nowrap">
+                                                <?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2): ?>
+                                                    <a href="edit.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
+                                                        class="btn btn-dark btn-sm mx-1">
+                                                        <i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit
+                                                    </a>
+                                                    <?php if ($_SESSION['level'] == 1): ?>
+                                                        <a href="delete.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
+                                                            class="btn btn-warning btn-sm mx-1 text-dark"
+                                                            onclick="return confirm('Yakin Data Di Hapus?')">
+                                                            <i class="fa-solid fa-trash-can"></i>&nbsp;Hapus
+                                                        </a>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                     <!--End of Table Element-->
                 </div>
@@ -197,6 +259,7 @@
 
     <!-- Link to Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="dhasboard/js/script.js">
 </body>
 
 </html>
