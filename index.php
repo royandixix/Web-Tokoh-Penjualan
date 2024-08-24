@@ -49,7 +49,7 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
 </style>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">Toko Online Mamuju</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -58,12 +58,12 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2): ?>
+                    <?php if ($_SESSION['level'] == 1 or $_SESSION['level'] == 2): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Barang</a>
                         </li>
                     <?php endif; ?>
-                    <?php if ($_SESSION['level'] == 1): ?>
+                    <?php if ($_SESSION['level'] == 1 or $_SESSION['level'] == 3): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="pelanggan.php"><i
                                     class="fa-solid fa-person-military-pointing"></i>&nbsp;Pelanggan</a>
@@ -73,26 +73,23 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                         <a class="nav-link" href="crudmodal.php"><i class="fa-solid fa-user"></i>&nbsp;Data Akun</a>
                     </li>
                 </ul>
-
-                <!-- Tambahkan ms-auto untuk memindahkan elemen berikut ke kanan -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            Hai <?php echo htmlspecialchars($_SESSION['nama'], ENT_QUOTES, 'UTF-8'); ?>
-                        </a>
+                        <a class="nav-link" href="#">Hai
+                            <?php echo htmlspecialchars($_SESSION['nama'], ENT_QUOTES, 'UTF-8'); ?></a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php"
                             onclick="return confirm('Apakah Anda yakin ingin keluar?')">
                             <i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout
                         </a>
 
+
                     </li>
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>  
 
     <div class="container mt-4 pt-5">
         <h2><i class="fa-solid fa-folder-open"></i>&nbsp;Inventory Management Dashboard</h2>
@@ -129,7 +126,8 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                             <td class="text-nowrap">Rp. <?php echo number_format($br["harga"], 0, ',', '.'); ?></td>
                             <td>
 
-                            <img alt="barcode" src="barcode.php?codetype=Code128&size=10&text=<?php echo $br['barcode'] ?>&print=true&rand=<?php echo time(); ?>"/>
+                                <img alt="barcode"
+                                    src="barcode.php?codetype=Code128&size=10&text=<?php echo $br['barcode'] ?>&print=true&rand=<?php echo time(); ?>" />
 
                             </td>
 

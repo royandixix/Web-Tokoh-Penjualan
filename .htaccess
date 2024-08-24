@@ -18,7 +18,7 @@ Allow from all
 </IfModule>
 
 # Redirect pelanggan.php ke URL GitHub
-Redirect 301 /web/pelanggan.php https://github.com/royandixix
+#Redirect 301 /web/ https://
 
 # Kompresi berbagai tipe file untuk mengurangi ukuran data yang dikirim
 <IfModule mod_deflate.c>
@@ -42,6 +42,7 @@ Redirect 301 /web/pelanggan.php https://github.com/royandixix
     AddOutputFilterByType DEFLATE font/ttf
     AddOutputFilterByType DEFLATE font/otf
     AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/woff
 
     # Kompresi untuk browser lama yang tidak mendukung gzip
     BrowserMatch ^Mozilla/4 gzip-only-text/html
