@@ -235,7 +235,7 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
                                                         class="btn btn-dark btn-sm mx-1">
                                                         <i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit
                                                     </a>
-                                                    <?php if ($_SESSION['level'] == 1): ?>
+                                       git             <?php if ($_SESSION['level'] == 1): ?>
                                                         <a href="delete.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
                                                             class="btn btn-warning btn-sm mx-1 text-dark"
                                                             onclick="return confirm('Yakin Data Di Hapus?')">
