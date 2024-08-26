@@ -104,53 +104,53 @@ $result = query("SELECT * FROM barang ORDER BY id_barang DESC");
         <hr>
 
         <div class="table-responsive">
-            <table class="table table-hover" id="example">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>Jumlah</th>
-                        <th>Harga</th>
-                        <th>Barcode</th>
-                        <th>Tanggal</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 1; ?>
-                    <?php foreach ($result as $br): ?>
+                <table class="table table-hover" id="example">
+                    <thead>
                         <tr>
-                            <td class="text-nowrap"><?php echo htmlspecialchars($no++, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td class="text-nowrap"><?php echo htmlspecialchars($br["nama"], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td class="text-nowrap"><?php echo htmlspecialchars($br["jumlah"], ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td class="text-nowrap">Rp. <?php echo number_format($br["harga"], 0, ',', '.'); ?></td>
-                            <td>
-
-                                <img alt="barcode"
-                                    src="barcode.php?codetype=Code128&size=10&text=<?php echo $br['barcode'] ?>&print=true&rand=<?php echo time(); ?>" />
-
-                            </td>
-
-                            <td class="text-nowrap"><?php echo date('d/m/y | H:i:s', strtotime($br["tanggal"])); ?></td>
-                            <td class="text-nowrap">
-                                <?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2): ?>
-                                    <a href="edit.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
-                                        class="btn btn-dark btn-sm mx-1">
-                                        <i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit
-                                    </a>
-                                    <?php if ($_SESSION['level'] == 1): ?>
-                                        <a href="delete.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
-                                            class="btn btn-warning btn-sm mx-1 text-dark"
-                                            onclick="return confirm('Yakin Data Di Hapus?')">
-                                            <i class="fa-solid fa-trash-can"></i>&nbsp;Hapus
-                                        </a>
-                                    <?php endif; ?>
-                                <?php endif; ?>
-                            </td>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Jumlah</th>
+                            <th>Harga</th>
+                            <th>Barcode</th>
+                            <th>Tanggal</th>
+                            <th>Aksi</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1; ?>
+                        <?php foreach ($result as $br): ?>
+                            <tr>
+                                <td class="text-nowrap"><?php echo htmlspecialchars($no++, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td class="text-nowrap"><?php echo htmlspecialchars($br["nama"], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td class="text-nowrap"><?php echo htmlspecialchars($br["jumlah"], ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td class="text-nowrap">Rp. <?php echo number_format($br["harga"], 0, ',', '.'); ?></td>
+                                <td>
+
+                                    <img alt="barcode"
+                                        src="barcode.php?codetype=Code128&size=10&text=<?php echo $br['barcode'] ?>&print=true&rand=<?php echo time(); ?>" />
+
+                                </td>
+
+                                <td class="text-nowrap"><?php echo date('d/m/y | H:i:s', strtotime($br["tanggal"])); ?></td>
+                                <td class="text-nowrap">
+                                    <?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2): ?>
+                                        <a href="edit.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
+                                            class="btn btn-dark btn-sm mx-1">
+                                            <i class="fa-solid fa-pen-to-square"></i>&nbsp;Edit
+                                        </a>
+                                        <?php if ($_SESSION['level'] == 1): ?>
+                                            <a href="delete.php?id_barang=<?php echo urlencode($br['id_barang']); ?>"
+                                                class="btn btn-warning btn-sm mx-1 text-dark"
+                                                onclick="return confirm('Yakin Data Di Hapus?')">
+                                                <i class="fa-solid fa-trash-can"></i>&nbsp;Hapus
+                                            </a>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
         </div>
 
     </div>
